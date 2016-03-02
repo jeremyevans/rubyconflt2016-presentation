@@ -1,0 +1,100 @@
+Todo:
+
+Implementation of timing safe string comparison for token (or check PostgreSQL)
+
+Additional example of custom overriding from work
+
+Tested example using Sinatra/ActiveRecord
+
+ROTP support
+ otp_login
+  assumes user already logged in via password (via login)
+  check otp matches, if there is an otp
+  page for viewing otp code/QR
+  option to require otp for all new accounts (set up otp if not setup)
+  lockout always used for otp
+  rodauth method for whether already otp authentication
+ otp_create
+  assumes user logged
+  only allowed if user doesn't already have otp
+ otp_remove
+  only allowed if already logged in via otp 
+  remove OTP token
+ otp reset
+  mail user, they click link to reset otp token
+  must login with new otp token to remove old one (can't just remove OTP token)
+ close account
+  needs to remove otp keys
+
+account_otp_keys
+id
+account_id
+otp_key
+verified (bool)
+last_login
+failed_logins
+
+account_otp_backup_keys
+id
+account_id
+backup_otp_key
+  
+
+More detail on each feature
+
+
+Intro
+Password Hash Storage
+ Why It is Important
+  Password Reuse on Other Sites
+  Compromise of one site affects other sites
+ How to Store Hashes
+  Separate table, easier to lock down
+  Single column for simplicity
+ Multiple database accounts
+ How to Check Hash without Access to Hash
+  Separate Account:
+   Split Hash Into Salt and Hash part
+   Return Salt
+  App:
+   Compute Hash using Salt and Password
+   Send Computed Hash
+  Separate Account:
+   Check if Computed Hash matches
+ Protection Against SQL Injection
+  GRANT: no privileges were granted
+  ALTER TABLE: must be owner of relation
+ Protection Against RCE
+  As long as they don't have access to login as database superuser or database password account
+ Can't use multiple accounts in services like Heroku
+  But no less secure than other frameworks in that case
+ Which Hash to Use
+  Which Hashes Not To Use and Why
+  bcrypt vs scrypt
+Token Security
+ Separate tokens per user and feature
+  Makes brute force more difficult
+Rodauth Features
+ Comprehensive Solution: Not Just Login Authentication 
+ Change Password
+ Change Login
+ Reset Password
+ Create Account
+ Close Account
+ Verify Account
+ Auto Login via Token
+ Account Lockout
+Rodauth Configuration
+ Block based DSL
+ Override any part of framework
+  Make decisions using any part of request
+Easy Integration into Legacy Systems
+ Use of Rack middleware to work with non-Roda based applications
+ Can be used with ActiveRecord
+ Example using Sinatra/ActiveRecord
+ Check hash stored in column in same table
+ Use configuration to support LDAP lookup to ActiveDirectory
+Takeaways
+ Use separate database accounts for more security
+ Don't use purely random data for any tokens, always include a account specific component
+ Often better to use more tables with fewer columns than one large table with many mostly NULL columns

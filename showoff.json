@@ -1,0 +1,7 @@
+{
+  "name": "Rodauth: Rodauth: Website Security Through Database Security",
+  "description": "Describes the design and implementation of the Rodauth authentication framework",
+  "sections": [
+    {"section":"slides"}
+  ]
+}
