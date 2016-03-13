@@ -1,5 +1,5 @@
 !SLIDE
-.notes Hello everyone.  I'm excited and honored to be speaking here at RubyConf LT.|My presentation today is entitled Rodauth: Website Security Through Database Security, and it will discuss security issues related to password authentication, and how Rodauth is designed to handle these issues.
+.notes Hello everyone.  I'm excited and honored to be speaking here at RubyConf LT.|My presentation today is entitled Rodauth: Website Security Through Database Security, and I will discuss security issues related to password authentication, and how Rodauth is designed to handle these issues.
 
 <img src="../../file/rodauth.svg" width="300" style="position: absolute; top: 120px; left: 100px;"/>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 200px; left: 400px;">Website Security</h1>
@@ -33,7 +33,7 @@
 
 
 !SLIDE
-.notes For example, if you are looking for a full featured authentication framework, in you are using Rails, there's Devise, Authlogic, and Sorcery.
+.notes If you are looking for a full featured authentication framework, if you are using Rails, there's Devise, Authlogic, and Sorcery.
 
 <h1 class="color4" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Devise</h1>
 <h1 class="color4" style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Authlogic</h1>
@@ -42,10 +42,10 @@
 !SLIDE 
 .notes In the past, I worked mostly on non-Rails applications, and as there wasn't a good authentication library I could use, I ended up implementing authentication differently in each of the applications I worked on, based on the needs of the application.|I decided last year to work on a authentication framework that all of my applications could use, which I named Rodauth.
 
-<img src="../../file/rodauth.svg" width="600" style="position: absolute; top: -50px; left: 300px;"/>
+<img src="../../file/rodauth.svg" width="600" style="position: absolute; top: 50px; left: 300px;"/>
 
 !SLIDE 
-.notes As I was developing Roda, one of the main design principles was that it had to be flexible, as I had many applications with different authentication requirements.|I had applications that where password hashes were stored in the same table as the logins, applications that authenticated against LDAP, applications needing separate authentication for separate groups of users, and applications that used database functions for authentication.
+.notes As I was developing Rodauth, one of the main design principles was that it had to be flexible, as I had many applications with different authentication requirements.|I had applications that where password hashes were stored in the same table as the logins, applications that authenticated against LDAP, applications needing separate authentication for separate groups of users, and applications that used database functions for authentication.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Flexible</h1>
 
@@ -112,7 +112,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Passwords</h1>
 
 !SLIDE
-.notes For example, if you do not have any requirements on passwords, most users will use passwords like 123456 or password
+.notes If you do not have any requirements on passwords, most users will use passwords like 123456 or password
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
@@ -238,7 +238,7 @@ aaaaaa
 </code></pre>
 
 !SLIDE
-.notes For example, there are fewer than a half million 4 character all lowercase passwords
+.notes There are fewer than a half million 4 character all lowercase passwords
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>
 [a-z]{4}       | <b>456976</b>
@@ -299,7 +299,7 @@ aaaaaa
 <h1 class="white" style="font-size: 130px; position: absolute; top: 430px; left: 160px;">SHA256</h1>
 
 !SLIDE
-.notes For example, if you take the SHA1 hash of the word password, it always results in the same hash.
+.notes If you take the SHA1 hash of the word password, it always results in the same hash.
 
 <pre style="font-size: 50px; margin-top: 10px;"><code>
 $ echo -n password | sha1
@@ -333,7 +333,7 @@ $ echo -n password | sha1
 <h1 style="font-size: 130px; position: absolute; top: 430px; left: 460px;">scrypt</h1>
 
 !SLIDE
-.notes For example, if you take the bcrypt hash of the word password, it results in different output, due to the inclusion of a random salt:
+.notes If you take the bcrypt hash of the word password, it results in different output, due to the inclusion of a random salt:
 
 <pre style="font-size: 32px; margin-top: 210px;"><code>$ echo -n password | encrypt
 <b>$2b$08$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui</b>
@@ -841,7 +841,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 230px; position: absolute; top: 310px; right: 160px;">Tokens</h1>
 
 !SLIDE
-.notes For example, tokens in Rodauth are in this format.
+.notes Rodauth tokens use the following format.
 
 <pre style="font-size: 40px; margin-top: 210px;"><code>1234_hJxZkHnb9O5XoA1916It_apCSQVJmB6cCgxbxHbKiOU
 </code></pre>
@@ -934,7 +934,7 @@ WHERE password_reset_key =
 </code></pre>
 
 !SLIDE
-.notes For example, if they submit this token, but there is an existing token in the system that also starts with hJ but not hJx, it will in general take less time
+.notes If a user submits this token, but there is an existing token in the system that also starts with hJ but not hJx, it will in general take less time
 
 <pre style="font-size: 40px; margin-top: 210px;"><code>SELECT id FROM accounts
 WHERE password_reset_key = 
@@ -965,7 +965,7 @@ WHERE password_reset_key =
 <h1 style="font-size: 150px; position: absolute; top: 330px; left: 100px;">Feature</h1>
 
 !SLIDE
-.notes For example, if we go back to the Rodauth query I showed earlier, note that the table name it selects from is specific to password reset tokens.
+.notes If we go back to the Rodauth query I showed earlier, note that the table name it selects from is specific to password reset tokens.
 
 <pre style="font-size: 40px; margin-top: 210px;"><code>SELECT key FROM <b>account_password_reset_keys</b>
 WHERE id = 1234;
@@ -1161,7 +1161,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes For simplicity, Rodauth allows you to use arguments for many simple configuration settings.  For example, the account_model method sets the model to use for the account.  You can specify this by just passing the class to account model.  This is a useful shortcut.
+.notes For simplicity, Rodauth allows you to use arguments for many simple configuration settings.  The account_model method sets the model to use for the account.  You can specify this by just passing the class to account model.  This is a useful shortcut.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1387,7 +1387,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes What if you want to have different authentication behavior for different sections of your application?  For example, if you want to separate admin account authentication from other accounts.
+.notes What if you want to have different authentication behavior for different sections of your application?  If you want to separate admin account authentication from other accounts.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1515,7 +1515,7 @@ end
 !SLIDE 
 .notes If you value those goals and want to learn more about Rodauth, check out rodauth.jeremyevans.net for details.
 
-<img src="../../file/rodauth.svg" width="400" style="position: absolute; top: 0px; left: 400px;"/>
+<img src="../../file/rodauth.svg" width="400" style="position: absolute; top: 50px; left: 400px;"/>
 <h1 style="text-align: left; margin-left: 100px; margin-top: 580px; font-size: 70px;">http://rodauth.jeremyevans.net</h1>
 
 !SLIDE
