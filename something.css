@@ -2,27 +2,35 @@
  * will be included in your presentation */
  
  /*
- colors:
- FDC8EF
- CD88AF
- AA5585
- 882D61
- 661141
- 440027
+http://www.colorhunter.com/
+ #5E0000 #2290FF #FCFFF4 #6DA6FF #CA2401
  */
 
-.roda {
-  font-family: 'Italianno', cursive;
-  color: #440027;
-}
-.bg-title h1 { color: ; #440027}
-.bg-title p { color: #661141; }
+.white {color: #FCFFF4;}
+.color1 {color: #5E0000;}
+.color2 {color: #2290FF;}
+.color3 {color: #6DA6FF;}
+.color4 {color: #AA2401;}
+
+.bg-white {background-color: #FCFFF4;}
+.bg-color1 {background-color: #5E0000;}
+.bg-color2 {background-color: #2290FF;}
+.bg-color3 {background-color: #6DA6FF;}
+.bg-color4 {background-color: #AA2401;}
+
+.slide.bg-white {background-color: #FCFFF4;}
+.slide.bg-color1 {background-color: #5E0000;}
+.slide.bg-color2 {background-color: #2290FF;}
+.slide.bg-color3 {background-color: #6DA6FF;}
+.slide.bg-color4 {background-color: #AA2401;}
+
+.roda { font-family: 'Italianno', cursive; }
 
 .slide {
  font-family: 'Playfair Display', serif;
  font-weight: bold;
- color: #661141;
- background-color: #FDC8EF;
+ color: #5E0000;
+ background-color: #6DA6FF;
  text-align: left;
 }
 
@@ -34,14 +42,12 @@ h1, pre, td, tr {
  font-family: inherit;
  font-weight: inherit;
  color: inherit;
- background-color: inherit;
  text-align: inherit;
  background-color: transparent;
  margin: 0;
  padding: 0;
 }
 pre {
- background-color: transparent;
  line-height: 125%; 
 }
 td, th {
@@ -109,8 +115,18 @@ div pre.sh_sourceCode {
   background-color: transparent;
 }
 div pre.sh_sourceCode b, div pre b {
-  background-color: white;
-  border: 1px solid #141;
+  background-color: #FCFFF4;
+  outline: 3px solid #FCFFF4;
+}
+
+div pre.sh_sourceCode span.sh_keyword {
+  color: #AA0055;
+}
+div pre.sh_sourceCode span.sh_string {
+  color: #5E0000;
+}
+div pre.sh_sourceCode span.sh_type {
+  color: #5500AA;
 }
 
 .review {
@@ -121,15 +137,14 @@ top: 75px;
 right: 15px;
 padding: 10px;
 padding-bottom: 20px;
-border: 5px #141 dotted;
-background-color: white;
-color: #661141;
+border: 5px #FCFFF4 dotted;
+background-color: #5E0000;
+color: #6DA6FF;
 display: inline-block;
 -webkit-transform: rotate(30deg);
 -moz-transform: rotate(30deg);
 transform: rotate(30deg);
 }
 
+.slide.bg-jeremy {background-image: url('jeremy.jpg'); background-size: cover; background-position: center center;}
 .slide.bg-roda {background-image: url('roda.jpg'); background-size: cover; background-position: center center;}
-.slide.bg-runtime {background-image: url('runtime.png'); }
-.slide.bg-memory {background-image: url('memory.png'); }
