@@ -35,9 +35,9 @@
 !SLIDE
 .notes If you are looking for a full featured authentication framework, if you are using Rails, there's Devise, Authlogic, and Sorcery.
 
-<h1 class="color4" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Devise</h1>
-<h1 class="color4" style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Authlogic</h1>
-<h1 class="color4" style="font-size: 130px; position: absolute; top: 510px; left: 560px;">Sorcery</h1>
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Devise</h1>
+<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Authlogic</h1>
+<h1 style="font-size: 130px; position: absolute; top: 510px; left: 560px;">Sorcery</h1>
 
 !SLIDE 
 .notes In the past, I worked mostly on non-Rails applications, and as there wasn't a good authentication library I could use, I ended up implementing authentication differently in each of the applications I worked on, based on the needs of the application.|I decided last year to work on a authentication framework that all of my applications could use, which I named Rodauth.
@@ -772,7 +772,7 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 130px; position: absolute; top: 430px; left: 610px;">Attack</h1>
 
 !SLIDE
-.notes If we go back to the database function used for checking password hashes, it just does a simple comparison of the existing hash to the provided hash.  This means that the time this query will take to return a result is in some way dependent on how many initial characters of the provided password hash match the stored password hash.|It is theoretically possible for attacker to exploit this to determine the stored password hash, though I expect such an attack would be difficult.  This type of attack could be mitigated by using a timing safe string comparison function, but unfortunately PostgreSQL does not provide one.
+.notes If we go back to the database function used for checking password hashes, it just does a simple comparison of the existing hash to the provided hash.  This means that the time this query will take to return a result is in some way dependent on how many initial characters of the provided password hash match the stored password hash.|It is theoretically possible for attacker to exploit this to determine the stored password hash, though I expect such an attack would be difficult.  This type of attack could be mitigated by using a timing safe string comparison function, but unfortunately most databases do not provide one.
 
 <pre style="font-size: 40px; margin-top: 10px;"><code>CREATE OR REPLACE FUNCTION
 rodauth_valid_password_hash
@@ -795,19 +795,21 @@ SET search_path = public, pg_temp;
 
 <h1 style="font-size: 200px; position: absolute; top: 410px; left: 160px;">Limitations</h1>
 
-!SLIDE bg-color1
+!SLIDE
 .notes However, if you are using a service like Heroku to supply the database, you may not be able to use multiple accounts.
 
 <img src="../../file/heroku.svg" width="900" heigth="300" style="margin-top: 250px" />
 
 !SLIDE
-.notes Additionally, Rodauth's use of multiple database accounts and functions is currently specific to PostgreSQL.  I believe the approach should be portable to any database that supports multiple accounts and functions that execute with the permissions of the definer instead of the permissions of the executer, but currently Rodauth only supports PostgreSQL by default.
+.notes Additionally, Rodauth's use of multiple database accounts and functions is currently specific to PostgreSQL and MySQL.  I believe the approach should be portable to any database that supports multiple accounts and functions that execute with the permissions of the definer instead of the permissions of the executer, but currently Rodauth only supports PostgreSQL and MySQL by default.
 
-<h1 class="white" style="font-size: 130px; position: absolute; top: 410px; left: 160px;">PostgreSQL</h1>
-<h1 style="font-size: 130px; position: absolute; top: 520px; left: 260px;">Specific</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 270px; left: 230px;">PostgreSQL</h1>
+<h1 style="font-size: 70px; position: absolute; top: 385px; left: 390px;">&amp;</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 410px; left: 260px;">MySQL</h1>
+<h1 style="font-size: 130px; position: absolute; top: 520px; left: 300px;">Supported</h1>
 
 !SLIDE
-.notes When using a database other than PostgreSQL, Rodauth will access the password hash table directly, which drops the security level to roughly the same as other Ruby authentication frameworks.|Rodauth also supports storing the password hash in the same table as the account, allowing it to easily work with existing databases using that schema.
+.notes When using a database other than PostgreSQL or MySQL, Rodauth will access the password hash table directly, which drops the security level to roughly the same as other Ruby authentication frameworks.|Rodauth also supports storing the password hash in the same table as the account, allowing it to easily work with existing databases using that schema.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 260px; left: 570px;">Other</h1>
 <h1 style="font-size: 130px; position: absolute; top: 320px; left: 260px;">Databases</h1>
