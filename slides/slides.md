@@ -66,17 +66,26 @@
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Featured</h1>
 
 !SLIDE 
-.notes So that is the history behind Rodauth and its design principles.  Let me now go over the sections in the rest of the presentation.  I am first going to talk about password hash storage, why it is important, and how Rodauth handles it.
+.notes So that is the history behind Rodauth and its design principles.  Let me now go over the sections in the rest of the presentation.  I am first going to talk about how Rodauth attempts to prevent password hash cracking, stopping attackers from using password hashes on your site to break into other sites.
 
-<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Password</h1>
-<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 260px;">Hash</h1>
-<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Storage</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Password</h1>
+<h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
+
+!SLIDE 
+.notes I will talk explain how Rodauth protects from the reverse, where another site has been attacked and its password hashes have been cracked, and attackers are attempting to use the cracked passwords to break into accounts on your site.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
+<h1 style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Cracked</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Passwords</h1>
 
 !SLIDE
 .notes I will then talk about how Rodauth handles tokens used for things like password resets and account verification.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">Token</h1>
-<h1 style="font-size: 100px; position: absolute; top: 520px; right: 160px;">Storage</h1>
+<h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
 
 !SLIDE
 .notes I will talk briefly about the features Rodauth offers,
@@ -94,11 +103,12 @@
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
 
 !SLIDE
-.notes I am now going to talk about what makes Rodauth different from other authentication libraries from a security perspective, which is the use of multiple database accounts and database functions for authentication by default, which make it difficult for attackers to get access to the underlying password hashes.
+.notes I am now going to talk about what makes Rodauth different from other authentication libraries from a security perspective, which is the attempt to prevent cracking of passwords by the use of multiple database accounts and database functions for authentication by default. This makes it difficult for attackers to even get access to the underlying password hashes.
 
-<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Password</h1>
-<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 260px;">Hash</h1>
-<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Storage</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Password</h1>
+<h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
 
 !SLIDE
 .notes First, why is password hash storage so important.  Well, the main reason is that humans are bad at remembering good passwords, which causes two problems.
@@ -120,9 +130,9 @@
 !SLIDE
 .notes If you require that passwords must contain both letters and numbers and must be at least eight characters, most users will use passwords like password1.  This is not significantly more secure than just password by itself.
 
-<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
-<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
-<h1 style="font-size: 130px; position: absolute; top: 510px; left: 160px;">password1</h1>
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
+<h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">password1</h1>
 
 !SLIDE
 .notes Password complexity requirements only make it more likely that users will write down the password. If a user will not use a secure password in the absense of password complexity requirements, it is highly unlikely they will use a secure password if you have password complexity requirements.
@@ -175,26 +185,26 @@ aback
 !SLIDE
 .notes One variation on a dictionary attack uses each dictionary word as a prefix, and checks different suffixes.  Passwords that use simple additions like this will also be cracked quickly.
 
-<pre style="font-size: 60px; margin-top: 10px;"><code>aardvark1 
-aardvark2
+<pre style="font-size: 60px; margin-top: 10px;"><code>aardvark<b>1</b> 
+aardvark<b>2</b>
 ...
-aardvark9
-aardwolf1
-aardwolf2
+aardvark<b>9</b>
+aardwolf<b>1</b>
+aardwolf<b>2</b>
 ...
 </code></pre>
 
 !SLIDE
 .notes Another uses common substitutions of symbols and numbers for letters.  Passwords that use substitutions like this also tend to be cracked quickly.
 
-<pre style="font-size: 60px; margin-top: 10px;"><code>@ardvark
-a@rdvark
-aardv@rk
+<pre style="font-size: 60px; margin-top: 10px;"><code><b>@</b>ardvark
+a<b>@</b>rdvark
+aardv<b>@</b>rk
 ...
-@ardwolf
-a@rdwolf
-aardw0lf
-aardwo1f
+<b>@</b>ardwolf
+a<b>@</b>rdwolf
+aardw<b>0</b>lf
+aardwo<b>1</b>f
 ...
 </code></pre>
 
@@ -394,6 +404,17 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 .notes As you can see, against a serious attacker, all simple SHA1 password hashes can be cracked almost immediately, and most simple bcrypt passwords could be cracked if the attacker is willing to wait.|Note that the numbers for SHA1 here are not even considering the use of graphics processors.  SHA1 hashes can be cracked up to 500 times faster on a graphics processor than on a CPU.  However, graphics processors are slower than CPUs for cracking bcrypt hashes, due to bcrypt's design, which requires constant memory access.  This is another reason to use bcrypt over SHA1.
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt(8)
+[a-z]{8}       | 2 * 10<sup>11</sup> | &lt;1 second  | 43 minutes
+[a-z0-9]{8}    | 3 * 10<sup>12</sup> | &lt;1 second  | 9 hours
+[A-Za-z]{8}    | 5 * 10<sup>13</sup> |  7 seconds | 8 days
+[A-Za-z0-9]{8} | 2 * 10<sup>14</sup> | 30 seconds | 31 days
+[a-z]{11}      | 3 * 10<sup>15</sup> |  9 minutes | 1.5 years
+</code></pre>
+
+!SLIDE
+.notes I should also point out that these numbers are using bcrypt with cost factor 8, where the default to Rodauth is to use bcrypt cost factor 10, which is 4 times harder to crack.
+
+<pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt<b>(8)</b>
 [a-z]{8}       | 2 * 10<sup>11</sup> | &lt;1 second  | 43 minutes
 [a-z0-9]{8}    | 3 * 10<sup>12</sup> | &lt;1 second  | 9 hours
 [A-Za-z]{8}    | 5 * 10<sup>13</sup> |  7 seconds | 8 days
@@ -816,19 +837,225 @@ SET search_path = public, pg_temp;
 
 
 !SLIDE
-.notes In review, Rodauth uses multiple database accounts and database functions to prevent attacker access to password hashes, and a secure password hash algorithm to slow attackers down if they do get access to the password hashes.
+.notes In review, Rodauth prevents password hash cracking using multiple database accounts and database functions to prevent attacker access to password hashes, and a secure password hash algorithm to slow attackers down if they do get access to the password hashes.
 
-<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Password</h1>
-<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 260px;">Hash</h1>
-<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Storage</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Password</h1>
+<h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
 <div class="review">Review</div>
 
+!SLIDE
+.notes Protecting access to password hashes prevents attackers from using password hashes from your site to attack other sites.  How do you prevent the reverse, with attackers using cracked passwords from other sites to attack your site?
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
+<h1 style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Cracked</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Passwords</h1>
 
 !SLIDE
-.notes I am now going to talk briefly about Rodauth's approach to token storage.
+.notes A good way to prevent that is requiring something in addition to the password when authenticating the user.  This is usually referred to as 2FA
+
+<h1 class="white" style="font-size: 350px; position: absolute; top: 210px; left: 160px;">2</h1>
+<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">F</h1>
+<h1 style="font-size: 130px; position: absolute; top: 420px; left: 360px;">A</h1>
+
+!SLIDE
+.notes or 2 factor authentication.  With 2 factor authentication, the first factor is the password, and users must provide a second factor to authenticate.  This second factor can be a physical object, biometric, rotating pass code, or something else.
+
+
+<h1 class="white" style="font-size: 350px; position: absolute; top: 210px; left: 160px;">2</h1>
+<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Factor</h1>
+<h1 style="font-size: 130px; position: absolute; top: 420px; left: 360px;">Authentication</h1>
+
+!SLIDE
+.notes One way to integrate 2 factor authentication into your application is to have users register their mobile phone number, and send SMS messages to that phone number containing codes that the user must enter.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">SMS</h1>
+
+!SLIDE
+.notes This does require all of your users have a working mobile phone on which to receive SMS codes in order to login, which can be problematic.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">SMS</h1>
+<h1 style="font-size: 70px; position: absolute; top: 510px; right: 180px;">Requires</h1>
+<h1 style="font-size: 70px; position: absolute; top: 570px; right: 120px;">Mobile</h1>
+
+!SLIDE
+.notes One open standard for 2 factor authentication is U2F
+
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">U</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 160px;">F</h1>
+
+!SLIDE
+.notes also known as Universal 2nd Factor.  With U2F, the user must have a separate physical USB security key, as well as a compatible browser.  Logging in with U2F requires inserting the USB security key, and pressing a button on the USB key after typing in the user name and password.
+
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Universal</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2nd</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 160px;">Factor</h1>
+
+!SLIDE
+.notes The main problem with U2F is it requires a separate USB security key.  Unlike mobile phones, users are not likely to already have a U2F compatible USB security key, and are not as likely to keep it with them as they are a mobile phone.
+
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Universal</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2nd</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 160px;">Factor</h1>
+<h1 style="font-size: 70px; position: absolute; top: 260px; left: 560px;">Requires</h1>
+<h1 style="font-size: 70px; position: absolute; top: 330px; left: 560px;">USB Key</h1>
+
+!SLIDE
+.notes Additionally, only Google Chrome currently has native support for U2F, so users using another browsers will not be able to use it without a separate pluign or extension.
+
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Universal</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2nd</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 160px;">Factor</h1>
+<h1 style="font-size: 70px; position: absolute; top: 260px; left: 560px;">Requires</h1>
+<h1 style="font-size: 70px; position: absolute; top: 330px; left: 560px;">Chrome</h1>
+
+!SLIDE
+.notes Another open standard for 2 factor authentication is TOTP
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">T</h1>
+<h1 style="font-size: 130px; position: absolute; top: 220px; left: 160px;">O</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 330px; left: 160px;">T</h1>
+<h1 style="font-size: 130px; position: absolute; top: 440px; left: 160px;">P</h1>
+
+!SLIDE
+.notes which standards for Time-Based One-Time Password.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
+<h1 style="font-size: 130px; position: absolute; top: 220px; left: 160px;">One</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Time</h1>
+<h1 style="font-size: 130px; position: absolute; top: 440px; left: 160px;">Password</h1>
+
+!SLIDE
+.notes TOTP is described by RFC 6238, which was published in 2011, so it has been around for a while.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
+<h1 style="font-size: 130px; position: absolute; top: 220px; left: 160px;">One</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Time</h1>
+<h1 style="font-size: 130px; position: absolute; top: 440px; left: 160px;">Password</h1>
+<h1 class="white" style="font-size: 70px; position: absolute; top: 560px; left: 360px;">RFC 6238</h1>
+
+!SLIDE
+.notes TOTP is time based. That means that as time passes, the authentication code to login changes.  Many TOTP implementations default to rotating the authentication code every minute.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
+
+!SLIDE
+.notes The authentication code generated for this minute may be 526461,
+
+<h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">T1: 526461</h1>
+
+!SLIDE
+.notes but the following minute the authentication code will change to 757468
+
+<h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">T1: 526461</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 420px; left: 160px;">T2: 757468</h1>
+
+!SLIDE
+.notes TOTP works by having the client and server share a secret, which is usally displayed as a 16 character base32 encoded string.
+
+<h1 style="font-size: 130px; position: absolute; top: 110px; left: 260px;">Shared</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 200px; left: 190px;">Secret</h1>
+
+!SLIDE
+.notes If the user would like to store their TOTP secret on their mobile phone, instead of having to type the secret in, they can use their phone's camera to scan in a QR code containing the secret.
+
+<img src="../../file/rodauth_qrcode.svg" width="600" style="margin-top: 50px;"/>
+
+!SLIDE
+.notes The are many mobile apps that support TOTP, scanning in secrets via QR codes, and displaying the current authentication code for the site. Google Authenticator is probably the most popular app that supports TOTP.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; right: 300px;">Mobile</h1>
+<h1 style="font-size: 130px; position: absolute; top: 200px; right: 270px;">Apps</h1>
+
+!SLIDE
+.notes However, a mobile phone is not required, there are plenty of other tools that handle TOTP.  There are many libraries, command line programs, and graphical programs that support TOTP.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; right: 300px;">Mobile</h1>
+<h1 style="font-size: 130px; position: absolute; top: 200px; right: 270px;">Apps</h1>
+<h1 class="white" style="font-size: 50px; position: absolute; top: 320px; right: 50px;">Not Required</h1>
+
+!SLIDE
+.notes TOTP just requires an additional form element when logging in, and works in all browsers.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 200px; left: 190px;">Supports</h1>
+<h1 style="font-size: 150px; position: absolute; top: 310px; left: 360px;">All</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 410px; left: 280px;">Browsers</h1>
+
+!SLIDE
+.notes Because TOTP relies on time and codes are changed often, it is dependent on the client's clock being synchronized with the server's clock.  However, this isn't a problem in general as most computers and mobile phones synchronization to the same root time source via network time protocol.
+
+<h1 class="white" style="font-size: 200px; position: absolute; top: 110px; right: 160px;">Clock</h1>
+<h1 style="font-size: 100px; position: absolute; top: 290px; right: 160px;">Synchronization</h1>
+
+!SLIDE
+.notes Because of the wider support for TOTP as well as ease of use and implementation, I choose TOTP as the basis for Rodauth's 2 factor authentication support.
+
+<img src="../../file/rodauth.svg" width="400" style="margin-top: 150px;"/>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 390px; right: 80px;">TOTP</h1>
+
+!SLIDE
+.notes Rodauth's TOTP feature is separate from the login feature.  This makes it easy to support a wide variety of authentication needs. You can force all users that have accounts to use TOTP.  You can make TOTP use optional and only require users use it if they sign up for it.  You can also only require OTP use for sensitive actions.
+
+<h1 class="white" style="font-size: 100px; position: absolute; top: 120px; left: 140px;">Separate</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">TOTP</h1>
+<h1 class="white" style="font-size: 70px; position: absolute; top: 310px; left: 230px;">from</h1>
+<h1 style="font-size: 130px; position: absolute; top: 350px; left: 170px;">Login</h1>
+
+!SLIDE
+.notes One of the issues 2 factor authentication implementations have to deal with is how to handle the situation where the second factor is not available, for example with a dead mobile phone battery.
+
+<h1 style="font-size: 130px; position: absolute; top: 240px; right: 360px;">Dead</h1>
+<h1 class="white" style="font-size: 170px; position: absolute; top: 310px; right: 260px;">Phone?</h1>
+
+!SLIDE
+.notes Rodauth supports the use of recovery codes, which are single use passwords that can be used instead of the TOTP authentication codes to allow logins.
+
+<h1 style="font-size: 130px; position: absolute; top: 410px; left: 260px;">Recovery</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 340px;">Codes</h1>
+
+!SLIDE
+.notes One of the issues you still have to think about when implementing 2 factor authentication via TOTP is how to handle brute force attacks.  After all, TOTP auth codes are usually 6 decimal digits, with means there are only 1 million combinations, which is fairly trivial to brute force.
+
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Brute</h1>
+<h1 style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Force</h1>
+<h1 class="white" style="font-size: 200px; position: absolute; top: 240px; left: 520px;">Attack</h1>
+
+!SLIDE
+.notes Rodauth defaults to locking out TOTP authentication after 5 failed attempts.  After TOTP authentication has been locked out, a recovery code has to be entered in order to gain access to the account.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 240px; left: 160px;">TOTP</h1>
+<h1 style="font-size: 170px; position: absolute; top: 210px; left: 540px;">Lockout</h1>
+
+!SLIDE
+.notes In order to prevent a brute force attack on the recovery code mechanism, using a failed recovery code locks out recovery code use for a minute, making a brute force attack on the recovery codes infeasible.
+
+<h1 class="white" style="font-size: 100px; position: absolute; top: 190px; right: 760px;">Recovery</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 290px; right: 760px;">Code</h1>
+<h1 style="font-size: 170px; position: absolute; top: 210px; left: 540px;">Lockout</h1>
+
+!SLIDE
+.notes Rodauth defaults to requiring a user to reenter their password whenever changing their TOTP security settings, as well as already being authenticated via TOTP before disabling 2 factor authentication or viewing recovery codes.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 240px; left: 160px;">TOTP</h1>
+<h1 style="font-size: 170px; position: absolute; top: 210px; left: 540px;">Security</h1>
+
+!SLIDE
+.notes By using Rodauth's 2 factor authentication support, you can protect your site from password hash attacks on other sites, in addition to protecting other sites from password hash attacks on your site.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
+<h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
+<h1 style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Cracked</h1>
+<h1 class="white" style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Passwords</h1>
+<div class="review">Review</div>
+
+!SLIDE
+.notes I am now going to talk briefly about Rodauth's approach to token security.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">Token</h1>
-<h1 style="font-size: 100px; position: absolute; top: 520px; right: 160px;">Storage</h1>
+<h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
 
 !SLIDE
 .notes First, what types of tokens are we talking about?  Well, if a user forgets their password and needs to reset it, Rodauth generates a password reset token for the user and mails it to them.|The user receives the mail, which contains a link with the token, allowing them to change their password.  Similar tokens are used for other features in Rodauth.
@@ -979,10 +1206,10 @@ WHERE id = 1234;
 <h1 style="font-size: 200px; position: absolute; top: 180px; left: 20px;">Performance</h1>
 
 !SLIDE
-.notes In review, Rodauth uses account specific tokens stored in separate tables, mostly for performance, but also for additional theoretical security.
+.notes In review, Rodauth uses account specific tokens stored in separate tables, mostly for performance. It also tries to prevent against theoretical brute force and timing attacks on tokens.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">Token</h1>
-<h1 style="font-size: 100px; position: absolute; top: 520px; right: 160px;">Storage</h1>
+<h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
 <div class="review">Review</div>
 
 !SLIDE
@@ -1035,6 +1262,12 @@ WHERE id = 1234;
 <h1 style="font-size: 150px; position: absolute; top: 280px; left: 320px;">Account</h1>
 
 !SLIDE
+.notes There is also a feature for users to close their own accounts.
+
+<h1 style="font-size: 100px; position: absolute; top: 220px; left: 420px;">Close</h1>
+<h1 class="white" style="font-size: 150px; position: absolute; top: 280px; left: 320px;">Account</h1>
+
+!SLIDE
 .notes There is a feature called remember for automatically logging users in based on a token stored in a cookie, keeping track of whether they logged in via password or cookie, and asking them to reauthenticate via password for security sensitive actions.
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 220px; left: 420px;">Remember</h1>
@@ -1045,10 +1278,9 @@ WHERE id = 1234;
 <h1 style="font-size: 150px; position: absolute; top: 220px; left: 420px;">Lockout</h1>
 
 !SLIDE
-.notes The final currently supported feature allows users to close their own accounts.
+.notes Finally, Rodauth has an OTP feature implementing time-based one time passwords as I discussed earlier.
 
-<h1 style="font-size: 100px; position: absolute; top: 220px; left: 420px;">Close</h1>
-<h1 class="white" style="font-size: 150px; position: absolute; top: 280px; left: 320px;">Account</h1>
+<h1 class="white" style="font-size: 150px; position: absolute; top: 420px; left: 320px;">OTP</h1>
 
 !SLIDE
 .notes In review, Rodauth is a full featured authentication and account management framework, which should be able to handle the needs of most applications.
