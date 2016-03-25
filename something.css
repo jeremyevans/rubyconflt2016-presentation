@@ -2,28 +2,10 @@
  * will be included in your presentation */
  
  /*
-http://www.colorhunter.com/
- #5E0000 #2290FF #FCFFF4 #6DA6FF #CA2401
+ #5E0000 #FCFFF4 #6DA6FF
  */
 
 .white {color: #FCFFF4;}
-.color1 {color: #5E0000;}
-.color2 {color: #2290FF;}
-.color3 {color: #6DA6FF;}
-.color4 {color: #AA2401;}
-
-.bg-white {background-color: #FCFFF4;}
-.bg-color1 {background-color: #5E0000;}
-.bg-color2 {background-color: #2290FF;}
-.bg-color3 {background-color: #6DA6FF;}
-.bg-color4 {background-color: #AA2401;}
-
-.slide.bg-white {background-color: #FCFFF4;}
-.slide.bg-color1 {background-color: #5E0000;}
-.slide.bg-color2 {background-color: #2290FF;}
-.slide.bg-color3 {background-color: #6DA6FF;}
-.slide.bg-color4 {background-color: #AA2401;}
-
 .roda { font-family: 'Italianno', cursive; }
 
 .slide {
