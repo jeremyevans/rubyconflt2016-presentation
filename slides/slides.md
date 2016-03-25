@@ -33,7 +33,7 @@
 
 
 !SLIDE
-.notes If you are looking for a full featured authentication framework, if you are using Rails, there's Devise, Authlogic, and Sorcery.
+.notes If you are looking for a full featured authentication framework, and you are using Rails, there is Devise, Authlogic, and Sorcery.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Devise</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Authlogic</h1>
@@ -60,7 +60,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 560px;">Simple</h1>
 
 !SLIDE 
-.notes I also wanted Rodauth to be full featured.  I wanted to be able to start a new application and with a few lines of code enable not just login authentication, but account creation and verification, password changing and resets, and brute force attack protection.|Other than the Rails-dependent authentication frameworks, most other ruby authentication libraries only offer login authentication, forcing you to implement the other features yourself.
+.notes I also wanted Rodauth to be full featured.  I wanted to be able to start a new application and with a few lines of code enable not just login authentication, but account creation and verification, password changing and resets, and brute force attack protection.|Other than the Rails-dependent authentication frameworks, most other ruby authentication libraries only offer login authentication, leaving you to implement the other features yourself.
 
 <h1 class="white" style="font-size: 140px; position: absolute; top: 120px; right: 195px;">Full</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Featured</h1>
@@ -74,7 +74,7 @@
 <h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
 
 !SLIDE 
-.notes I will talk explain how Rodauth protects from the reverse, where another site has been attacked and its password hashes have been cracked, and attackers are attempting to use the cracked passwords to break into accounts on your site.
+.notes I will explain how Rodauth protects from the reverse, where another site has been attacked and its password hashes have been cracked, and attackers are attempting to use the cracked passwords to break into accounts on your site.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
@@ -98,7 +98,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
 
 !SLIDE
-.notes Finally, I will talk about how Rodauth can be integrated into existing systems.  It does not matter if you are using Rails, Sinatra, Roda, Padrino, Hanami, or are running on bare Rack, you can use Rodauth to handle authentication for your application.
+.notes Finally, I will talk about how Rodauth can be integrated into existing systems.  It does not matter if you are using Rails, Sinatra, Roda, Hanami, or are running on bare Rack, you can use Rodauth to handle authentication for your application.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
 
@@ -111,44 +111,44 @@
 <h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
 
 !SLIDE
-.notes First, why is password hash storage so important.  Well, the main reason is that humans are bad at remembering good passwords, which causes two problems.
+.notes First, why is password hash storage so important.  Well, it stems from the fact that most humans are bad at remembering good passwords. This manifests itself in two ways.
 
-<h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;">Why?</h1>
+<h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;">Why<span class="white">?</span></h1>
 
 !SLIDE
-.notes First, humans tend to choose simple passwords.  Even if you try to force them to use complex passwords, most humans will pick a simple password that just happens to more complex than you require.
+.notes The first way is that humans tend to choose simple passwords.  Even if you try to force them to use complex passwords, many humans will pick a simple password that just happens to more complex than you require.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 140px; right: 270px;">Simple</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Passwords</h1>
 
 !SLIDE
-.notes If you do not have any requirements on passwords, most users will use passwords like 123456 or password
+.notes If you do not have any requirements on passwords, many humans will use passwords like 123456 or password
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 
 !SLIDE
-.notes If you require that passwords must contain both letters and numbers and must be at least eight characters, most users will use passwords like password1.  This is not significantly more secure than just password by itself.
+.notes If you require that passwords must be at least eight characters and contain both uppercase letters, lowercase letters, and numbers, many humans will use passwords like Password1.  This is not significantly more secure than just password by itself.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
-<h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">password1</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Password1</h1>
 
 !SLIDE
-.notes Password complexity requirements only make it more likely that users will write down the password. If a user will not use a secure password in the absense of password complexity requirements, it is highly unlikely they will use a secure password if you have password complexity requirements.
+.notes Password complexity requirements only make it more likely that humans will write down the password. If a human will not use a secure password in the absense of password complexity requirements, it is highly unlikely they will use a secure password if you have password complexity requirements.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 260px;">Password</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 290px;">Complexity</h1>
 <h1 style="font-size: 130px; position: absolute; top: 400px; left: 160px;">Requirements</h1>
 
 !SLIDE
-.notes Second, humans tend to reuse passwords on multiple sites.  It is impractical to attempt to prevent this.
+.notes The second way is that humans tend to reuse passwords on multiple sites.  It is impractical to attempt to prevent this.
 
 <h1 style="font-size: 100px; position: absolute; top: 110px; right: 160px;">Password</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 160px; right: 340px;">Reuse</h1>
 
 !SLIDE
-.notes Because of these two factors, even if you are not storing any important data in your own system, if you are storing password hashes for users, and your application gets compromised, attackers can try to crack the password hashes stored in your system to try to figure out the underlying password, and use that password to access other systems.
+.notes Due to a combination of these two factors, even if you are not storing any important data in your own system, if you are storing password hashes for users, and your application gets compromised, attackers can try to crack the password hashes stored in your system to try to figure out the underlying password, and use that password to access other systems.
 
 <h1 style="font-size: 200px; position: absolute; top: 210px; left: 160px;">Attack</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 210px; left: 760px;">Other</h1>
@@ -173,7 +173,7 @@
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Dictionary</h1>
 <h1 style="font-size: 100px; position: absolute; top: 230px; left: 460px;">Attack</h1>
 
-!SLIDE
+!SLIDE skip
 .notes A dictionary attack basically tries each word in a dictionary, in order.  In English, there are only a few thousand words in a dictionary, so any password that is also a word that appears in a dictionary will be cracked almost immediately.  There many variations on dictionary attacks.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>aardvark
@@ -182,7 +182,7 @@ aback
 ...
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes One variation on a dictionary attack uses each dictionary word as a prefix, and checks different suffixes.  Passwords that use simple additions like this will also be cracked quickly.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>aardvark<b>1</b> 
@@ -194,7 +194,7 @@ aardwolf<b>2</b>
 ...
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes Another uses common substitutions of symbols and numbers for letters.  Passwords that use substitutions like this also tend to be cracked quickly.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code><b>@</b>ardvark
@@ -215,7 +215,7 @@ aardwo<b>1</b>f
 <h1 style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Force</h1>
 <h1 class="white" style="font-size: 200px; position: absolute; top: 240px; left: 520px;">Attack</h1>
 
-!SLIDE
+!SLIDE skip
 .notes A brute force attack basically tries all possible combinations of characters, and will eventually be able to crack any password given enough time.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>aaaa
@@ -296,7 +296,7 @@ aaaaaa
 </code></pre>
 
 !SLIDE
-.notes You can use that information to choose better passwords for your own accounts. As I mentioned earlier, you cannot force users to use good passwords.  However, you can choose which password hash algorithm to use, and that can have a dramatic effect on password hash cracking times.
+.notes You can use that information to choose better passwords for your own accounts. As I mentioned earlier, you cannot force humans to use good passwords.  However, you can choose which password hash algorithm to use, and that can have a dramatic effect on password hash cracking times.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Password</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 260px;">Hash</h1>
@@ -308,7 +308,7 @@ aaaaaa
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">SHA1</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 430px; left: 160px;">SHA256</h1>
 
-!SLIDE
+!SLIDE skip
 .notes If you take the SHA1 hash of the word password, it always results in the same hash.
 
 <pre style="font-size: 50px; margin-top: 10px;"><code>
@@ -363,21 +363,21 @@ $ echo -n password | encrypt
 </code></pre>
 
 !SLIDE
-.notes Bcrypt also includes a cost factor as part of the salt, which each increase in the cost factor doubling the amount of work bcrypt will perform to compute the hash.  In this case, the cost factor is 8.
+.notes Bcrypt also includes a cost factor as part of the salt, which each increase in the cost factor doubling the amount of work bcrypt will perform to compute the hash.  In this case, the cost factor is 8.  I'll use the term bcrypt(8) to refer to bcrypt with cost factor 8.
 
 <pre style="font-size: 32px; margin-top: 210px;"><code>$ echo -n password | encrypt
 $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes One of my test machines, which is a few years old, can check about 7 million SHA1 password hashes per second using a relatively underpowered CPU.  It can check about 80 bcrypt password hashes with cost factor 8 per second.  So bcrypt with cost factor 8 is almost 100,000 times harder to crack than SHA1.
+.notes One of my test machines, which is a few years old, can check about 7 million SHA1 password hashes per second using a relatively underpowered CPU.  It can check about 80 bcrypt(8) password hashes per second.  So bcrypt(8) is almost 100,000 times harder to crack than SHA1.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 360px;">Time</h1>
 <h1 class="white" style="font-size: 70px; position: absolute; top: 330px; left: 500px;">to</h1>
 <h1 style="font-size: 130px; position: absolute; top: 360px; left: 360px;">Crack</h1>
 
 !SLIDE
-.notes So if we consider the time to crack each password by the number of possible passwords, we can compare about how long it would take to crack the average password in each of these sets, depending on whether the hashes used SHA1 or bcrypt with cost factor 8.
+.notes So if we consider the time to crack each password by the number of possible passwords, we can compare about how long it would take to crack the average password in each of these sets, depending on whether the hashes used SHA1 or bcrypt(8).
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt(8)
 [a-z]{4}       | 456976<sup>  </sup> | &lt;1 second  | 1.5 hours
@@ -389,7 +389,7 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes One thing we can see is that it takes more more time to crack an 8 character password hashed with bcrypt with cost factor 8 than it takes to crack an 11 character password hashed with SHA1.|Note that these numbers were for a single, relatively underpowered machine. Anyone serious about cracking passwords could easily spin up tens of thousands of more powerful cloud machines dedicated to cracking the password.|Let us see what the numbers look like for an serious attacker.
+.notes One thing we can see is that it takes more more time to crack an 8 character password hashed with bcrypt(8) than it takes to crack an 11 character password hashed with SHA1.|Note that these numbers were for a single, relatively underpowered machine. Anyone serious about cracking passwords could easily spin up tens of thousands of more powerful cloud machines dedicated to cracking the password.|Let us see what the numbers look like for an serious attacker.
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt(8)
 [a-z]{4}       | 456976<sup>  </sup> | &lt;1 second  | 1.5 hours
@@ -412,7 +412,7 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes I should also point out that these numbers are using bcrypt with cost factor 8, where the default to Rodauth is to use bcrypt cost factor 10, which is 4 times harder to crack.
+.notes I should also point out that these numbers are using bcrypt(8), where the default to Rodauth is to use bcrypt(10), which is 4 times harder to crack.
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt<b>(8)</b>
 [a-z]{8}       | 2 * 10<sup>11</sup> | &lt;1 second  | 43 minutes
@@ -425,12 +425,12 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 !SLIDE
 .notes So now we can answer the question of why password hash storage is so important.  It is because if attackers get access to the password hashes, it probably will not take them that much time to crack them and get the passwords, and then they can use the passwords to attack other sites.  So preventing attackers from getting access to password hashes is critical from a security perspective.
 
-<h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;">Why?</h1>
+<h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;">Why<span class="white">?</span></h1>
 
 !SLIDE
 .notes How do you keep the attacker from accessing the password hash, if you obviously need to get some access to the password hash in order to authenicate the user?
 
-<h1 class="white" style="font-size: 330px; position: absolute; top: 210px; left: 260px;">How?</h1>
+<h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;"><span class="white">How</span>?</h1>
 
 !SLIDE
 .notes Rodauth's approach is store password hashes in a separate table.
@@ -745,7 +745,7 @@ SET search_path = public, pg_temp;
 </code></pre>
 
 !SLIDE
-.notes However, while this does not result in an error, it also does not make any changes.  The reason for this is that the app account is not the owner of the password hash table, and only the owner of the table or a superuser can grant privileges on the table.
+.notes While this does not result in an error, it also does not make any changes.  The reason for this is that the app account is not the owner of the password hash table, and only the owner of the table or a superuser can grant privileges on the table.
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>GRANT SELECT ON account_password_hashes to my_account;
 <b>WARNING:  no privileges were granted for "account_password_hashes"</b>
@@ -787,12 +787,18 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 200px;">Access</h1>
 
 !SLIDE
+.notes If an attacker that can exploit a remote code execution vulnerability in your application, they may be able to escalate their privileges to get access to a database superuser account, database files, or database backups.  To mitigate against that risk you need to isolate your database from your application, which is a bit out of scope for this talk.
+
+<h1 style="font-size: 100px; position: absolute; top: 160px; left: 260px;">Privilege</h1>
+<h1 class="white" style="font-size: 150px; position: absolute; top: 240px; left: 210px;">Escalation</h1>
+
+!SLIDE skip
 .notes While an attacker that could exploit a remote code execution vulnerability would not have direct access to stored password hashes, there is a possible timing attack which may allow them to more easily guess password hashes.
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 310px; left: 360px;">Timing</h1>
 <h1 style="font-size: 130px; position: absolute; top: 430px; left: 610px;">Attack</h1>
 
-!SLIDE
+!SLIDE skip
 .notes If we go back to the database function used for checking password hashes, it just does a simple comparison of the existing hash to the provided hash.  This means that the time this query will take to return a result is in some way dependent on how many initial characters of the provided password hash match the stored password hash.|It is theoretically possible for attacker to exploit this to determine the stored password hash, though I expect such an attack would be difficult.  This type of attack could be mitigated by using a timing safe string comparison function, but unfortunately most databases do not provide one.
 
 <pre style="font-size: 40px; margin-top: 10px;"><code>CREATE OR REPLACE FUNCTION
@@ -822,15 +828,17 @@ SET search_path = public, pg_temp;
 <img src="../../file/heroku.svg" width="900" heigth="300" style="margin-top: 250px" />
 
 !SLIDE
-.notes Additionally, Rodauth's use of multiple database accounts and functions is currently specific to PostgreSQL and MySQL.  I believe the approach should be portable to any database that supports multiple accounts and functions that execute with the permissions of the definer instead of the permissions of the executer, but currently Rodauth only supports PostgreSQL and MySQL by default.
+.notes Second, Rodauth only has built in support for setting up the necessary database authentication functions on PostgreSQL, MySQL, and Microsoft SQL Server .  The approach Rodauth uses should be portable to other databases that support multiple accounts and functions that execute with the permissions of the definer instead of the permissions of the executer.
 
-<h1 class="white" style="font-size: 130px; position: absolute; top: 270px; left: 230px;">PostgreSQL</h1>
-<h1 style="font-size: 70px; position: absolute; top: 385px; left: 390px;">&amp;</h1>
-<h1 class="white" style="font-size: 130px; position: absolute; top: 410px; left: 260px;">MySQL</h1>
-<h1 style="font-size: 130px; position: absolute; top: 520px; left: 300px;">Supported</h1>
+<h1 class="white" style="font-size: 170px; position: absolute; top: 130px; left: 120px;">PostgreSQL</h1>
+<h1 style="font-size: 70px; position: absolute; top: 285px; left: 390px;">&amp;</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 260px;">MySQL</h1>
+<h1 style="font-size: 70px; position: absolute; top: 425px; left: 420px;">&amp;</h1>
+<h1 class="white" style="font-size: 60px; position: absolute; top: 470px; left: 260px;">Microsoft SQL Server</h1>
+<h1 style="font-size: 210px; position: absolute; top: 460px; left: 130px;">Supported</h1>
 
 !SLIDE
-.notes When using a database other than PostgreSQL or MySQL, Rodauth will access the password hash table directly, which drops the security level to roughly the same as other Ruby authentication frameworks.|Rodauth also supports storing the password hash in the same table as the account, allowing it to easily work with existing databases using that schema.
+.notes When using another database, such as SQLite, Rodauth will access the password hash table directly, which drops the security level to roughly the same as other Ruby authentication frameworks.|Rodauth also supports storing the password hash in the same table as the account, allowing it to easily work with existing databases using that schema.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 260px; left: 570px;">Other</h1>
 <h1 style="font-size: 130px; position: absolute; top: 320px; left: 260px;">Databases</h1>
@@ -846,7 +854,7 @@ SET search_path = public, pg_temp;
 <div class="review">Review</div>
 
 !SLIDE
-.notes Protecting access to password hashes prevents attackers from using password hashes from your site to attack other sites.  How do you prevent the reverse, with attackers using cracked passwords from other sites to attack your site?
+.notes Protecting access to password hashes prevents attackers from using password hashes from your site to attack other sites.  How do you protect against the reverse, with attackers using cracked passwords from other sites to attack your site?
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
@@ -985,7 +993,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; left: 280px;">Browsers</h1>
 
 !SLIDE
-.notes Because TOTP relies on time and codes are changed often, it is dependent on the client's clock being synchronized with the server's clock.  However, this isn't a problem in general as most computers and mobile phones synchronization to the same root time source via network time protocol.
+.notes Because TOTP relies on time and codes are changed often, it is dependent on the client's clock being synchronized with the server's clock.  However, this isn't a problem in general as most computers and mobile phones synchronize to the same root time source via network time protocol.
 
 <h1 class="white" style="font-size: 200px; position: absolute; top: 110px; right: 160px;">Clock</h1>
 <h1 style="font-size: 100px; position: absolute; top: 290px; right: 160px;">Synchronization</h1>
@@ -1027,13 +1035,6 @@ SET search_path = public, pg_temp;
 .notes Rodauth defaults to locking out TOTP authentication after 5 failed attempts.  After TOTP authentication has been locked out, a recovery code has to be entered in order to gain access to the account.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 240px; left: 160px;">TOTP</h1>
-<h1 style="font-size: 170px; position: absolute; top: 210px; left: 540px;">Lockout</h1>
-
-!SLIDE
-.notes In order to prevent a brute force attack on the recovery code mechanism, using a failed recovery code locks out recovery code use for a minute, making a brute force attack on the recovery codes infeasible.
-
-<h1 class="white" style="font-size: 100px; position: absolute; top: 190px; right: 760px;">Recovery</h1>
-<h1 class="white" style="font-size: 100px; position: absolute; top: 290px; right: 760px;">Code</h1>
 <h1 style="font-size: 170px; position: absolute; top: 210px; left: 540px;">Lockout</h1>
 
 !SLIDE
@@ -1597,7 +1598,7 @@ end
 use RodauthApp
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes For database access, Rodauth uses Sequel internally, but you can certainly use ActiveRecord in your application and still use Rodauth. You would have to setup a Sequel database connection and create a model for the accounts, but that's pretty much it.|Sequel is not as small as Roda, but it still adds less than 9MB to your application's memory overhead.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'sequel'
@@ -1672,7 +1673,7 @@ end
 end
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes Let us take a brief look at a real world example of Rodauth usage.  This is from one of my open source applications called Giftsmas, which is a gift tracking program.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1687,7 +1688,7 @@ end
 end
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes As I showed earlier, the first step is to enable the the required features, in this case login and logout.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1702,7 +1703,7 @@ end
 end
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes These methods all override the default values so that the user interface for Giftsmas did not change when its custom authentication implementation was converted to use Rodauth.|No changes were required to the Giftsmas integration tests when converting it to use Rodauth.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1717,7 +1718,7 @@ end
 end
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes Before I converted Giftsmas to use Rodauth, it already stored bcrypt password hashes in a column in the same table, so Giftsmas uses the account_password_hash_column configuration method.|I run the Giftsmas demo site on Heroku, so I cannot easily switch it to use Rodauth's more secure default approach.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
