@@ -231,7 +231,7 @@ aaaaaa
 </code></pre>
 
 !SLIDE
-.notes The amount of time it will take on average to crack a password via brute force depends on the length of the password and the charcter set it uses, as that decides the universe of possible passwords.
+.notes The amount of time it will take on average to crack a password via brute force depends on the length of the password and the character set it uses, as that decides the universe of possible passwords.
 
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Combinations</h1>
 
@@ -912,7 +912,7 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 70px; position: absolute; top: 330px; left: 560px;">USB Key</h1>
 
 !SLIDE
-.notes Additionally, only Google Chrome currently has native support for U2F, so users using another browsers will not be able to use it without a separate pluign or extension.
+.notes Additionally, only Google Chrome currently has native support for U2F, so users using another browsers will not be able to use it without a separate plugin or extension.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Universal</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2nd</h1>
@@ -1279,9 +1279,15 @@ WHERE id = 1234;
 <h1 style="font-size: 150px; position: absolute; top: 220px; left: 420px;">Lockout</h1>
 
 !SLIDE
+.notes I've already stated why password complexity requirements are bad, but if you have a policy that requires them, Rodauth has a feature that offers additional password complexity checks.
+
+<h1 style="font-size: 100px; position: absolute; top: 220px; left: 340px;">Password</h1>
+<h1 class="white" style="font-size: 150px; position: absolute; top: 300px; left: 220px;">Complexity</h1>
+
+!SLIDE
 .notes Finally, Rodauth has an OTP feature implementing time-based one time passwords as I discussed earlier.
 
-<h1 class="white" style="font-size: 150px; position: absolute; top: 420px; left: 320px;">OTP</h1>
+<h1 class="white" style="font-size: 200px; position: absolute; top: 420px; left: 320px;">OTP</h1>
 
 !SLIDE
 .notes In review, Rodauth is a full featured authentication and account management framework, which should be able to handle the needs of most applications.
@@ -1290,7 +1296,7 @@ WHERE id = 1234;
 <div class="review">Review</div>
 
 !SLIDE
-.notes Rodauth is configured using a block based DSL that allows overriding all parts of the framework.  This configuration approach is what makes Rodauth flexible enough to support almost all existing authentication needs.|So far, I have spent this entire presentation talking about Rodauth and security, without showing how to actually use it.  Let me fix that now.
+.notes Rodauth is configured using a block based DSL that allows overriding all parts of the framework.  This configuration approach is what makes Rodauth flexible enough to support most existing authentication needs.|So far, I have spent this entire presentation talking about Rodauth and security, without showing how to actually use it.  Let me fix that now.
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
 
