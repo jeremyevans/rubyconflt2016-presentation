@@ -1,5 +1,5 @@
 !SLIDE
-.notes Hello everyone.  I'm excited and honored to be speaking here at RubyConf LT.|My presentation today is entitled Rodauth: Website Security Through Database Security, and I will discuss security issues related to password authentication, and how Rodauth is designed to handle these issues.
+.notes Hello everyone.  I'm excited and honored to be speaking here at RubyConf LT.|My presentation today is entitled Rodauth: Website Security Through Database Security, and I will discuss security issues related to website authentication, and how Rodauth is designed to handle these issues.
 
 <img src="../../file/rodauth.svg" width="300" style="position: absolute; top: 120px; left: 100px;"/>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 200px; left: 400px;">Website Security</h1>
@@ -40,22 +40,22 @@
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 560px;">Sorcery</h1>
 
 !SLIDE 
-.notes In the past, I worked mostly on non-Rails applications, and as there wasn't a good authentication library I could use, I ended up implementing authentication differently in each of the applications I worked on, based on the needs of the application.|I decided last year to work on a authentication framework that all of my applications could use, which I named Rodauth.
+.notes In the past, I worked mostly on non-Rails applications, and as there wasn't a good authentication library I could use, I ended up implementing authentication differently in each of the applications I worked on, based on the needs of the application.|I decided last year to work on an authentication framework that all of my applications could use, which I named Rodauth.
 
 <img src="../../file/rodauth.svg" width="600" style="position: absolute; top: 50px; left: 300px;"/>
 
 !SLIDE 
-.notes As I was developing Rodauth, one of the main design principles was that it had to be flexible, as I had many applications with different authentication requirements.|I had applications that where password hashes were stored in the same table as the logins, applications that authenticated against LDAP, applications needing separate authentication for separate groups of users, and applications that used database functions for authentication.
+.notes As I was developing Rodauth, one of the main design goals was that it should to be flexible, as I had many applications with different authentication requirements.|I had applications where password hashes were stored in the same table as the logins, applications that authenticated against LDAP, applications needing separate authentication for separate groups of users, and applications that used database functions for authentication.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Flexible</h1>
 
 !SLIDE 
-.notes Another design principle was that I wanted the the default settings to be as secure as possible, and specifically make it difficult for an attacker to get access to password hashes.  I will talk a bit later about why this is so important.
+.notes Another design goal was the default settings should be as secure as possible, and specifically make it difficult for an attacker to get access to password hashes.  I will talk a bit later about why this is so important.
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Secure</h1>
 
 !SLIDE 
-.notes The final design principle is that I wanted Rodauth to be simple to use and configure.  One of the most common security issues in applications is misconfiguration, and making configuration as simple as possible I think leads to more secure applications.
+.notes The final design goal is that Rodauth should be simple to use and configure.  One of the most common security issues in applications is misconfiguration, and making configuration as simple as possible I think leads to more secure applications.
 
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 560px;">Simple</h1>
 
@@ -66,7 +66,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Featured</h1>
 
 !SLIDE 
-.notes So that is the history behind Rodauth and its design principles.  Let me now go over the sections in the rest of the presentation.  I am first going to talk about how Rodauth attempts to prevent password hash cracking, stopping attackers from using password hashes on your site to break into other sites.
+.notes So that is the history behind Rodauth and its design goals.  Let me now go over the sections in the rest of the presentation.  I am first going to talk about how Rodauth attempts to prevent password hash cracking, stopping attackers from using password hashes on your site to break into other sites.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
@@ -93,9 +93,9 @@
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Features</h1>
 
 !SLIDE
-.notes then talk about Rodauth's configuration DSL and the flexibility it offers to handle any authentication needs.
+.notes and then talk about Rodauth's configuration DSL and the flexibility it offers to handle most authentication requirements.
 
-<h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
+<h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
 
 !SLIDE
 .notes Finally, I will talk about how Rodauth can be integrated into existing systems.  It does not matter if you are using Rails, Sinatra, Roda, Hanami, or are running on bare Rack, you can use Rodauth to handle authentication for your application.
@@ -103,7 +103,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
 
 !SLIDE
-.notes I am now going to talk about what makes Rodauth different from other authentication libraries from a security perspective, which is the attempt to prevent cracking of passwords by the use of multiple database accounts and database functions for authentication by default. This makes it difficult for attackers to even get access to the underlying password hashes.
+.notes I am now going to talk about what makes Rodauth different from other authentication libraries from a security perspective, which is the attempt to prevent cracking of password hashes by the use of multiple database accounts and database functions for authentication by default. This makes it difficult for attackers to even get access to the underlying password hashes.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
@@ -116,7 +116,7 @@
 <h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;">Why<span class="white">?</span></h1>
 
 !SLIDE
-.notes The first way is that humans tend to choose simple passwords.  Even if you try to force them to use complex passwords, many humans will pick a simple password that just happens to more complex than you require.
+.notes The first way is that humans tend to choose simple passwords.  Even if you try to force them to use complex passwords, many humans will pick a simple password that just happens to be more complex than you require.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 140px; right: 270px;">Simple</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Passwords</h1>
@@ -135,7 +135,7 @@
 <h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Password1</h1>
 
 !SLIDE
-.notes Password complexity requirements only make it more likely that humans will write down the password. If a human will not use a secure password in the absense of password complexity requirements, it is highly unlikely they will use a secure password if you have password complexity requirements.
+.notes Password complexity requirements only make it more likely that humans will write down the password. If a human will not use a secure password in the absense of password complexity requirements, it is unlikely they will use a secure password if you have password complexity requirements.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 260px;">Password</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 290px;">Complexity</h1>
@@ -155,7 +155,7 @@
 <h1 class="white" style="font-size: 100px; position: absolute; top: 310px; left: 760px;">Sites</h1>
 
 !SLIDE
-.notes In order for an attacker to use password hashes from one website to attack another website, the first thing the attacker needs to do is get access to the password hashes.  Without access to the password hashes, there is nothing the attacker can use to attack other sites.  So as much as possible, you should make it very difficult for an attacker to access the password hashes.
+.notes In order for an attacker to use password hashes from one website to attack another website, the first thing the attacker needs to do is get access to the password hashes.  Without access to the password hashes, there is nothing the attacker can use to attack other sites.  So as much as possible, you should make it difficult for an attacker to access the password hashes.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 160px; left: 260px;">Restrict</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Password</h1>
@@ -163,7 +163,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 370px; left: 160px;">Access</h1>
 
 !SLIDE
-.notes Before I discuss how Rodauth prevents access to the password hashes, let me first discuss the worst case scenario, where an attacker is able to access the password hashes, The first thing they will probably do is to attempt to crack the passwords.
+.notes Before I discuss how Rodauth prevents access to the password hashes, let me first discuss the worst case scenario, where an attacker is able to access the password hashes. The first thing they will probably do is to attempt to crack the passwords.
 
 <h1 class="white" style="font-size: 160px; position: absolute; top: 310px; left: 260px;">Cracking</h1>
 
@@ -231,7 +231,7 @@ aaaaaa
 </code></pre>
 
 !SLIDE
-.notes The amount of time it will take on average to crack a password via brute force depends on the length of the password and the character set it uses, as that decides the universe of possible passwords.
+.notes The amount of time it will take on average to crack a password hash via brute force depends on the length of the password and the character set it uses, as that decides the universe of possible passwords.
 
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Combinations</h1>
 
@@ -303,7 +303,7 @@ aaaaaa
 <h1 style="font-size: 150px; position: absolute; top: 290px; left: 120px;">Algorithms</h1>
 
 !SLIDE
-.notes Many of you are probably familar with the SHA1 and SHA256 cryptographic hash algorithms.  While these are good cryptographic hash algorithms, they are very bad password hash algorithms.|First, these are designed for speed, and you generally want password hashing to be slow, not fast, in order to make attacking the password hashes more difficult.|Second, these hashes do not include salts, which means that when using them for password hashing, the same password always results in the same hash.
+.notes Many of you are probably familar with the SHA1 and SHA256 cryptographic hash algorithms.  While these are decent cryptographic hash algorithms, they are bad password hash algorithms.|First, these are designed for speed, and you generally want password hashing to be slow, not fast, in order to make cracking the password hashes more difficult.|Second, these hashes do not include salts, which means that when using them for password hashing, the same password always results in the same hash.
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">SHA1</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 430px; left: 160px;">SHA256</h1>
@@ -320,14 +320,14 @@ $ echo -n password | sha1
 </code></pre>
 
 !SLIDE
-.notes That is bad from a security perspective, as it makes it possible to attack the hashes using a precomputed rainbow table, allowing all simple passwords to be cracked immediately.|A rainbow table of all 11 character lowercase SHA1 password hashes takes about 175 petabytes of storage, which is definitely within the range of many determined attackers, and would allow immediate cracking of any of these passwords.
+.notes That is bad from a security perspective, as it makes it possible to crack the password hashes using a precomputed rainbow table, allowing all simple passwords to be cracked immediately.|A rainbow table of all 9 character alphanumeric SHA1 password hashes takes only 690GB of storage, and would allow immediate cracking of any of these passwords.
 
 <h1 style="font-size: 100px; position: absolute; top: 240px; left: 110px;">Rainbow</h1>
 <h1 style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Table</h1>
 <h1 class="white" style="font-size: 200px; position: absolute; top: 250px; left: 520px;">Attack</h1>
 
 !SLIDE
-.notes To prevent a rainbow table attack, you do what is called salting, where you add random data before the password, and when you check a password, you prepend the salt to the password and check the resulting hash matches.
+.notes To prevent a rainbow table attack, you do what is called salting, where you add random data before the password, and when you check a password, you prepend the salt to the password and check if the resulting hash matches.
 
 <h1 class="white" style="font-size: 200px; position: absolute; top: 310px; left: 360px;">Salting</h1>
 
@@ -343,7 +343,7 @@ $ echo -n password | sha1
 <h1 style="font-size: 130px; position: absolute; top: 430px; left: 460px;">scrypt</h1>
 
 !SLIDE
-.notes If you take the bcrypt hash of the word password, it results in different output, due to the inclusion of a random salt:
+.notes If you take the bcrypt hash of the word password, it results in different output, due to the inclusion of a random salt.
 
 <pre style="font-size: 32px; margin-top: 210px;"><code>$ echo -n password | encrypt
 <b>$2b$08$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui</b>
@@ -370,14 +370,14 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes One of my test machines, which is a few years old, can check about 7 million SHA1 password hashes per second using a relatively underpowered CPU.  It can check about 80 bcrypt(8) password hashes per second.  So bcrypt(8) is almost 100,000 times harder to crack than SHA1.
+.notes One of my test machines, which is fairly old, can check about 7 million SHA1 password hashes per second.  It can check about 80 bcrypt(8) password hashes per second.  So bcrypt(8) is almost 100,000 times harder to crack than SHA1.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 360px;">Time</h1>
 <h1 class="white" style="font-size: 70px; position: absolute; top: 330px; left: 500px;">to</h1>
 <h1 style="font-size: 130px; position: absolute; top: 360px; left: 360px;">Crack</h1>
 
 !SLIDE
-.notes So if we consider the time to crack each password by the number of possible passwords, we can compare about how long it would take to crack the average password in each of these sets, depending on whether the hashes used SHA1 or bcrypt(8).
+.notes If we consider the time to check each password hash by the number of possible passwords, we can compare about how long it would take to crack the average password in each of these sets, depending on whether the hashes used SHA1 or bcrypt(8).
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt(8)
 [a-z]{4}       | 456976<sup>  </sup> | &lt;1 second  | 1.5 hours
@@ -389,7 +389,7 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes One thing we can see is that it takes more more time to crack an 8 character password hashed with bcrypt(8) than it takes to crack an 11 character password hashed with SHA1.|Note that these numbers were for a single, relatively underpowered machine. Anyone serious about cracking passwords could easily spin up tens of thousands of more powerful cloud machines dedicated to cracking the password.|Let us see what the numbers look like for an serious attacker.
+.notes One thing we can see is that it takes more more time to crack an 8 character password hashed with bcrypt(8) than it takes to crack an 11 character password hashed with SHA1.|Note that these numbers were for a older single machine. Anyone serious about cracking passwords could easily spin up tens of thousands of more powerful cloud machines dedicated to cracking the password hash.|Let us see what the numbers look like for an serious attacker.
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt(8)
 [a-z]{4}       | 456976<sup>  </sup> | &lt;1 second  | 1.5 hours
@@ -412,7 +412,7 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes I should also point out that these numbers are using bcrypt(8), where the default to Rodauth is to use bcrypt(10), which is 4 times harder to crack.
+.notes I should also point out that these numbers are for bcrypt(8), where Rodauth's default is bcrypt(10), which is 4 times harder to crack.
 
 <pre style="font-size: 36px; margin-top: 10px;"><code>set            |    # <sup>  </sup>  |  SHA1      | bcrypt<b>(8)</b>
 [a-z]{8}       | 2 * 10<sup>11</sup> | &lt;1 second  | 43 minutes
@@ -423,7 +423,7 @@ $2b$<b>08</b>$tO1zyO2F8wRwISMvDg.YCuLUPoMDGwVPpl76vf5bXng3E4bRRCoui
 </code></pre>
 
 !SLIDE
-.notes So now we can answer the question of why password hash storage is so important.  It is because if attackers get access to the password hashes, it probably will not take them that much time to crack them and get the passwords, and then they can use the passwords to attack other sites.  So preventing attackers from getting access to password hashes is critical from a security perspective.
+.notes Now we can answer the question of why access to password hashes is so important.  It is because if attackers get access to the password hashes, it probably will not take them that much time to crack them and get the passwords, and then they can use the passwords to attack other sites.  So preventing attackers from getting access to password hashes is critical from a security perspective.
 
 <h1 style="font-size: 330px; position: absolute; top: 210px; left: 260px;">Why<span class="white">?</span></h1>
 
@@ -593,7 +593,7 @@ SET search_path = public, pg_temp;
 </code></pre>
 
 !SLIDE
-.notes Remember that the account_password_hashes stores the bcrypt password hash in a single column.  So in order to get the salt, it needs to extract the salt portion of the bcrypt hash.
+.notes The account_password_hashes table stores the bcrypt password hash in a single column.  So in order to get the salt, it needs to extract the salt portion of the hash.
 
 <pre style="font-size: 40px; margin-top: 10px;"><code>CREATE OR REPLACE FUNCTION
 rodauth_get_salt(account_id integer)
@@ -713,7 +713,7 @@ SET search_path = public, pg_temp;
 </code></pre>
 
 !SLIDE
-.notes By using this approach of disallowing direct access to password hashes, offers protections against two types of attacks.
+.notes This approach of disallowing direct access to password hashes offers protections against two types of attacks.
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 310px; left: 260px;">Protections</h1>
 
@@ -753,13 +753,13 @@ SET search_path = public, pg_temp;
 
 
 !SLIDE
-.notes Maybe an attacker will try to change the owner on the table?
+.notes Maybe an attacker will try to change the owner of the table?
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>ALTER TABLE account_password_hashes OWNER TO my_account;
 </code></pre>
 
 !SLIDE
-.notes This also raises as error, as you cannot change the owner of a table you are not currently the owner of.
+.notes This also raises an error, as you cannot change the owner of a table unless you are the owner of the table.
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>ALTER TABLE account_password_hashes OWNER TO my_account;
 <b>ERROR:  must be owner of relation account_password_hashes</b>
@@ -774,20 +774,20 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 130px; position: absolute; top: 290px; right: 260px;">Injection</h1>
 
 !SLIDE
-.notes Let us also consider a remote code execution vulnerability.  This is pretty much the worst type of vulnerability in an application, as the attacker can run arbitrary code.|The good news is that Rodauth is secure against this type of attack on stored password hashes.  Unless the attacker can get access to either the ph account or a database superuser account, they cannot get access to the password hashes.
+.notes What about a remote code execution vulnerability?  This is the worst type of vulnerability in an application, as the attacker can run arbitrary code.|The good news is that Rodauth is secure against this type of attack on stored password hashes.  Unless the attacker can get access to either the ph account or a database superuser account, they cannot get access to the password hashes.
 
 <h1 style="font-size: 100px; position: absolute; top: 260px; left: 450px;">Remote Code</h1>
 <h1 class="white" style="font-size: 200px; position: absolute; top: 310px; left: 160px;">Execution</h1>
 
 !SLIDE
-.notes However, if an attack can remotely execute code, while they may not be able to get access to stored password hashes, they can fairly easily compromise any account that logs in while they have control of the system.  They do not need the stored password hash in this case, as a user logging in provides the plain text of their password.
+.notes However, if an attacker can remotely execute code, while they may not be able to get access to stored password hashes, they can fairly easily compromise any account that logs in while they have control of the system.  They do not need the stored password hash in this case, as a user logging in provides the plain text of their password.
 
 <h1 style="font-size: 100px; position: absolute; top: 160px; left: 260px;">Plain Text</h1>
 <h1 class="white" style="font-size: 150px; position: absolute; top: 210px; left: 160px;">Password</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 200px;">Access</h1>
 
 !SLIDE
-.notes If an attacker that can exploit a remote code execution vulnerability in your application, they may be able to escalate their privileges to get access to a database superuser account, database files, or database backups.  To mitigate against that risk you need to isolate your database from your application, which is a bit out of scope for this talk.
+.notes If an attacker can exploit a remote code execution vulnerability in your application, they may be able to escalate their privileges to get access to a database superuser account, database files, or database backups.  To mitigate against that risk you need to isolate your database from your application, which is a bit out of scope for this talk.
 
 <h1 style="font-size: 100px; position: absolute; top: 160px; left: 260px;">Privilege</h1>
 <h1 class="white" style="font-size: 150px; position: absolute; top: 240px; left: 210px;">Escalation</h1>
@@ -823,7 +823,7 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 200px; position: absolute; top: 410px; left: 160px;">Limitations</h1>
 
 !SLIDE
-.notes However, if you are using a service like Heroku to supply the database, you may not be able to use multiple accounts.
+.notes However, if you are using a service like Heroku to supply the database, you may not be able to use multiple database accounts.
 
 <img src="../../file/heroku.svg" width="900" heigth="300" style="margin-top: 250px" />
 
@@ -862,7 +862,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Passwords</h1>
 
 !SLIDE
-.notes A good way to prevent that is requiring something in addition to the password when authenticating the user.  This is usually referred to as 2FA
+.notes A good way to prevent that is requiring something in addition to the password when authenticating the user.  This is referred to as 2FA
 
 <h1 class="white" style="font-size: 350px; position: absolute; top: 210px; left: 160px;">2</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">F</h1>
@@ -896,7 +896,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 160px;">F</h1>
 
 !SLIDE
-.notes also known as Universal 2nd Factor.  With U2F, the user must have a separate physical USB security key, as well as a compatible browser.  Logging in with U2F requires inserting the USB security key, and pressing a button on the USB key after typing in the user name and password.
+.notes or Universal 2nd Factor.  With U2F, the user must have a separate physical USB security key, as well as a compatible browser.  Logging in with U2F requires inserting the USB security key, and pressing a button on the USB key after typing in the user name and password.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Universal</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2nd</h1>
@@ -912,7 +912,7 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 70px; position: absolute; top: 330px; left: 560px;">USB Key</h1>
 
 !SLIDE
-.notes Additionally, only Google Chrome currently has native support for U2F, so users using another browsers will not be able to use it without a separate plugin or extension.
+.notes Additionally, only Google Chrome currently has native support for U2F, so users using other browsers will not be able to use it without a separate plugin or extension.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Universal</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 230px; left: 160px;">2nd</h1>
@@ -936,7 +936,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Time</h1>
 <h1 style="font-size: 130px; position: absolute; top: 440px; left: 160px;">Password</h1>
 
-!SLIDE
+!SLIDE skip
 .notes TOTP is described by RFC 6238, which was published in 2011, so it has been around for a while.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
@@ -951,18 +951,18 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
 
 !SLIDE
-.notes The authentication code generated for this minute may be 526461,
+.notes The authentication code generated for this minute may be 52 64 61,
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">T1: 526461</h1>
 
 !SLIDE
-.notes but the following minute the authentication code will change to 757468
+.notes but the following minute the authentication code will change to 75 74 68
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">T1: 526461</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 420px; left: 160px;">T2: 757468</h1>
 
 !SLIDE
-.notes TOTP works by having the client and server share a secret, which is usally displayed as a 16 character base32 encoded string.
+.notes TOTP works by having the client and server share a secret, which is usally displayed as a 16 character string.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 260px;">Shared</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 200px; left: 190px;">Secret</h1>
@@ -1005,7 +1005,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 390px; right: 80px;">TOTP</h1>
 
 !SLIDE
-.notes Rodauth's TOTP feature is separate from the login feature.  This makes it easy to support a wide variety of authentication needs. You can force all users that have accounts to use TOTP.  You can make TOTP use optional and only require users use it if they sign up for it.  You can also only require OTP use for sensitive actions.
+.notes Rodauth's TOTP feature is separate from the login feature.  This makes it easy to support a wide variety of authentication needs. You can force all users that have accounts to use TOTP.  You can make TOTP use optional and only require users use it if they sign up for it.  You can also only require TOTP use for sensitive actions.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 120px; left: 140px;">Separate</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">TOTP</h1>
@@ -1019,7 +1019,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 170px; position: absolute; top: 310px; right: 260px;">Phone?</h1>
 
 !SLIDE
-.notes Rodauth supports the use of recovery codes, which are single use passwords that can be used instead of the TOTP authentication codes to allow logins.
+.notes Rodauth supports the use of recovery codes, which are single use passwords that can be used instead of TOTP authentication codes.
 
 <h1 style="font-size: 130px; position: absolute; top: 410px; left: 260px;">Recovery</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 340px;">Codes</h1>
@@ -1059,7 +1059,7 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
 
 !SLIDE
-.notes First, what types of tokens are we talking about?  Well, if a user forgets their password and needs to reset it, Rodauth generates a password reset token for the user and mails it to them.|The user receives the mail, which contains a link with the token, allowing them to change their password.  Similar tokens are used for other features in Rodauth.
+.notes First, what types of tokens are we talking about?  Well, if a user forgets their password and needs to reset it, Rodauth generates a password reset token for the user and emails it to them.|The user receives the email, which contains a link with the token, allowing them to change their password.  Similar tokens are used for other features in Rodauth.
 
 <h1 class="white" style="font-size: 230px; position: absolute; top: 310px; right: 160px;">Tokens</h1>
 
@@ -1144,7 +1144,7 @@ WHERE <b>password_reset_key = </b>
 </code></pre>
 
 !SLIDE
-.notes This is mostly a theoretical vulnerability however, as long as the number of possible tokens is much larger than the number of accounts that have tokens, which should be true.
+.notes This is mostly a theoretical vulnerability as long as the number of possible tokens is much larger than the number of accounts that have tokens, which should be true.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 240px; left: 320px;">Mostly</h1>
 <h1 style="font-size: 200px; position: absolute; top: 280px; left: 120px;">Theoretical</h1>
@@ -1180,7 +1180,7 @@ WHERE password_reset_key =
 </code></pre>
 
 !SLIDE
-.notes Exploiting timing attacks over the internet is fairly difficult, especially in this case as the difference in speed is very low and subject to subtantial variance in general use. Because of those facts, this is also mostly a theoretical vulnerability.
+.notes Exploiting timing attacks over the internet is fairly difficult, especially in this case as the difference in speed is very low and subject to subtantial variance. Because of those facts, this is also mostly a theoretical vulnerability.
 
 <h1 style="font-size: 150px; position: absolute; top: 110px; left: 330px;">Also</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 240px; left: 320px;">Mostly</h1>
@@ -1378,7 +1378,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes Each feature you load adds configuration methods related to the feature.  So after loading the login feature, you can call the after_login configuration method with a block to specify additional behavior to perform after a successful login.
+.notes Each feature you load adds configuration methods related to the feature.  So after loading the login feature, you can call the after_login configuration method with a block to specify additional behavior to perform after a successful login.|In this case, we are recording successful logins to a log. 
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1390,7 +1390,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes In this case, we are recording successful logins to a log. The interesting things here are the call to account and request.|You see, each of these configuration blocks is evaluated in the context of a Rodauth object.  This object has access to everything related to the request.|So you can tailor how Rodauth will handle requests using any information related the request.  This design is what makes Rodauth flexible enough to handle most authentication needs.
+.notes The interesting things here are the calls to account and request.|You see, each of these configuration blocks is evaluated in the context of a Rodauth object.  This object has access to everything related to the request.|So you can tailor how Rodauth will handle requests using any information related the request.  This design is what makes Rodauth flexible enough to handle most authentication needs.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1547,14 +1547,14 @@ end
 </code></pre>
 
 !SLIDE
-.notes In review, Rodauth is configured via a simple but very flexible DSL, which allows it to handle the authentication and account management needs for most applications.
+.notes In review, Rodauth is configured via a simple but flexible DSL, which allows it to handle the authentication and account management needs for most applications.
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
 <div class="review">Review</div>
 
 
 !SLIDE
-.notes I would now like to show you how you can easily integrate Rodauth into your applications.
+.notes I would now like to show how you can easily integrate Rodauth into your applications.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
 
@@ -1617,7 +1617,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes What if you want to authenticate using LDAP, say to Windows Active Directory?  That can be accomplished using a single configuration method.  You just call the password_match? configuration and pass it a block.  Using the already retrieved account and the provided password, you can use any custom authentication method that you want.
+.notes What if you want to authenticate using LDAP, say to Windows Active Directory?  That can be accomplished using a single configuration method.  You just call the password_match? configuration method with a block.  Using the already retrieved account and the provided password, you can use any custom authentication method that you want.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1628,7 +1628,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes What if you want to have different authentication behavior for different sections of your application?  If you want to separate admin account authentication from other accounts.
+.notes What if you want to have different authentication behavior for different sections of your application?  Maybe you want to separate admin account authentication from regular account authentication.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1740,7 +1740,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes Hopefully these examples show how Rodauth can be integrated easily into existing applications, due to how flexible its configuration is.
+.notes Hopefully these examples show how Rodauth can be integrated into existing applications, due to how flexible its configuration is.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
 <div class="review">Review</div>
@@ -1754,26 +1754,26 @@ end
 <h1 style="font-size: 150px; position: absolute; top: 400px; left: 340px;">Flexibility</h1>
 
 !SLIDE 
-.notes If you value those goals and want to learn more about Rodauth, check out rodauth.jeremyevans.net for details.
+.notes If you value these goals and want to learn more about Rodauth, check out rodauth.jeremyevans.net for details.
 
 <img src="../../file/rodauth.svg" width="400" style="position: absolute; top: 50px; left: 400px;"/>
 <h1 style="text-align: left; margin-left: 100px; margin-top: 580px; font-size: 70px;">http://rodauth.jeremyevans.net</h1>
 
 !SLIDE
-.notes I would like to end this presentation by discussing some ideas I would like to take with you, not specifically related to Rodauth.
+.notes I would like to end this presentation by discussing some ideas I would like you to take with you, not specifically related to Rodauth.
 
 <h1 style="font-size: 200px; position: absolute; top: 180px; left: 220px;">Takeaways</h1>
 
 
 !SLIDE
-.notes First, prefer longer passwords over shorter but more complex passwords.  As I showed earlier, longer passwords can be significantly more secure than shorter but more complex passwords.
+.notes First, prefer longer passwords over shorter but more complex passwords.  As I showed earlier, longer passwords can be significantly more secure than shorter but more complex passwords, and are often easier to remember.
 
 <h1 style="font-size: 100px; position: absolute; top: 180px; left: 220px;">Prefer</h1>
 <h1 class="white" style="font-size: 150px; position: absolute; top: 240px; left: 120px;">Longer</h1>
 <h1 style="font-size: 100px; position: absolute; top: 380px; left: 220px;">Passwords</h1>
 
 !SLIDE
-.notes Second, if you store passwords, always use bcrypt or scrypt as the password hash.  For important passwords, such as administrative passwords, consider using a higher than default cost factor.
+.notes Second, if you store password hashes, always use bcrypt or scrypt as the password hash.  For important passwords, such as administrative passwords, consider using a higher than default cost factor.
 
 <h1 class="white" style="font-size: 200px; position: absolute; top: 340px; left: 120px;">Use</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 460px;">bcrypt</h1>
@@ -1781,7 +1781,7 @@ end
 
 
 !SLIDE
-.notes Third, I would like you to consider using multiple database accounts in your applications where it makes sense from a security perspective.  I rarely see applications that do this.  While it does take some additional work to setup, if security is important, the benefits of doing so should outweigh the costs.
+.notes Third, I would like you to consider using multiple database accounts in your applications where it makes sense from a security perspective.  I rarely see applications that do this.  While it does take some additional work to setup and maintain, if security is important, the benefits of doing so should outweigh the costs.
 
 <h1 style="font-size: 150px; position: absolute; top: 330px; left: 140px;">Multiple</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 310px; left: 730px;">Database</h1>
@@ -1789,7 +1789,7 @@ end
 
 
 !SLIDE
-.notes Fourth, recognize that database tables are cheap.  In reviewing other authentication frameworks and other applications, I see a tendency to use tables with many NULLable columns, which is usually considered a smell from a database design perspective.  Database tables are not a limited resource, do not be afraid to use more of them.
+.notes Fourth, recognize that database tables are cheap.  In reviewing other authentication frameworks and other applications, I see a tendency to use tables with many NULLable columns, which is considered a smell from a database design perspective.  Database tables are not a limited resource, do not be afraid to use more of them.
 
 <h1 style="font-size: 100px; position: absolute; top: 180px; left: 120px;">Database</h1>
 <h1 style="font-size: 100px; position: absolute; top: 270px; left: 120px;">Tables</h1>
@@ -1797,7 +1797,7 @@ end
 
 
 !SLIDE
-.notes Finally, if you have an idea for creating a library, look into existing libraries that due the same or similar things.  Before I started work on Rodauth, I looked at Devise, Authlogic, and Sorcery.|Originally, my goal was to see if any of them would be flexible enough to handle the needs in all of my applications, and would be possible to use without Rails.|Ultimately, I ended up writing Rodauth, but the knowledge I gained from reviewing existing libraries was very helpful to me in doing so.
+.notes Finally, if you have an idea for creating a library, look into existing libraries that do the same or similar things.  Before I started work on Rodauth, I looked at Devise, Authlogic, and Sorcery.|Originally, my goal was to see if any of them would be flexible enough to handle the needs of all of my applications, and if it would be possible to use them without Rails.|Ultimately, I ended up writing Rodauth, but the knowledge I gained from reviewing existing libraries was very helpful to me in doing so.
 
 <h1 class="white" style="font-size: 100px; position: absolute; top: 180px; left: 220px;">Read</h1>
 <h1 style="font-size: 150px; position: absolute; top: 260px; left: 130px;">Existing</h1>
