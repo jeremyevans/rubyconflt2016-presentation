@@ -1331,7 +1331,7 @@ class App &lt; Roda
 end
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes The route block here is executed for each request received by the application.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
@@ -1346,7 +1346,7 @@ class App &lt; Roda
 end
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes In this example, all the route block does is call r.rodauth, which allows Rodauth to handle the request.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
