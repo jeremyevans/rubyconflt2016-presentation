@@ -121,20 +121,20 @@
 <h1 class="white" style="font-size: 100px; position: absolute; top: 140px; right: 270px;">Simple</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Passwords</h1>
 
-!SLIDE skip
+!SLIDE 
 .notes If you do not have any requirements on passwords, many humans will use passwords like 123456 or password
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 
-!SLIDE skip
+!SLIDE 
 .notes If you require that passwords must be at least eight characters and contain both uppercase letters, lowercase letters, and numbers, many humans will use passwords like Password1.  This is not significantly more secure than just password by itself.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Password1</h1>
 
-!SLIDE skip
+!SLIDE 
 .notes Password complexity requirements only make it more likely that humans will write down the password. If a human will not use a secure password in the absense of password complexity requirements, it is unlikely they will use a secure password if you have password complexity requirements.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 260px;">Password</h1>
@@ -308,7 +308,7 @@ aaaaaa
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">SHA1</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 430px; left: 160px;">SHA256</h1>
 
-!SLIDE skip
+!SLIDE 
 .notes If you take the SHA1 hash of the word password, it always results in the same hash.
 
 <pre style="font-size: 50px; margin-top: 10px;"><code>
@@ -902,12 +902,12 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Factor</h1>
 <h1 style="font-size: 130px; position: absolute; top: 420px; left: 360px;">Authentication</h1>
 
-!SLIDE skip
+!SLIDE 
 .notes One way to integrate 2 factor authentication into your application is to have users register their mobile phone number, and send SMS messages to that phone number containing codes that the user must enter.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">SMS</h1>
 
-!SLIDE skip
+!SLIDE 
 .notes This does require all of your users have a working mobile phone on which to receive SMS codes in order to login, which can be problematic.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">SMS</h1>
@@ -1459,26 +1459,26 @@ end
 </code></pre>
 
 !SLIDE
-.notes For simplicity, Rodauth allows you to use arguments for many simple configuration settings.  The account_model method sets the model to use for the account.  You can specify this by just passing the class to account model.  This is a useful shortcut.
+.notes For simplicity, Rodauth allows you to use arguments for many simple configuration settings.  The accounts_table method sets the database table used to store account.  You can specify this by just passing a symbol to the method.  This is a useful shortcut.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
 
-  <b>account_model User</b>
+  <b>accounts_table :users</b>
 end
 </code></pre>
 
 !SLIDE
-.notes However, you can pass a block to account_model if you want to be able to change which account model to use based on a request parameter.  All of Rodauth's configuration settings accept blocks to allow more detailed control during configuration.
+.notes However, you can pass a block to accounts_table if you want to be able to change which accounts table per request.  All of Rodauth's configuration settings accept blocks to allow more detailed control during configuration.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
 
-  account_model do
-    if <b>request.params['admin']</b>
-      <b>Admin</b>
+  accounts_table do
+    if <b>request.ip.start_with?('192.168.1')</b>
+      <b>:admins</b>
     else
-      <b>User</b>
+      <b>:users</b>
     end
   end
 end
@@ -1517,11 +1517,11 @@ end
   include Login
   include Logout
 
-  def account_model
-    if request.params['admin']
-      Admin
+  def accounts_table
+    if request.ip.start_with?('192.168.1')
+      :admins
     else
-      User
+      :users 
     end
   end
 end
@@ -1533,11 +1533,11 @@ end
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
 
-  account_model do
-    if request.params['admin']
-      Admin
+  accounts_table do
+    if request.ip.start_with?('192.168.1')
+      :admins 
     else
-      User
+      :users
     end
   end
 end
@@ -1549,9 +1549,9 @@ end
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
 
-  account_model do
-    if request.params['admin']
-      Admin
+  accounts_table do
+    if request.ip.start_with?('192.168.1')
+      :admins
     else
       <b>super()</b>
     end
@@ -1727,14 +1727,15 @@ use RodauthApp
 </code></pre>
 
 !SLIDE skip
-.notes For database access, Rodauth uses Sequel internally, but you can certainly use ActiveRecord in your application and still use Rodauth. You would have to setup a Sequel database connection and create a model for the accounts, but that is pretty much it.|Sequel is not as small as Roda, but it still adds less than 9MB to your application's memory overhead.
+.notes For database access, Rodauth uses Sequel internally, but you can certainly use ActiveRecord in your application and still use Rodauth. You would have to setup a Sequel database connection, but that is pretty much it.|Sequel is not as small as Roda, but it still adds less than 8 megabytes to your application's memory overhead.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'sequel'
-<b>Sequel::Model.db = Sequel.connect('postgres://...')</b>
+<b>DB = Sequel.connect('postgres://...')</b>
 
 plugin :rodauth do
   enable :login, :logout
-  <b>account_model Class.new(Sequel::Model(:users))</b>
+  <b>db DB</b>
+  <b>accounts_table :users</b>
 end
 </code></pre>
 
@@ -1758,7 +1759,7 @@ end
 
 plugin :rodauth, :name=>:admin do
   enable :login, :logout, :change_password
-  account_model AdminAccount
+  accounts_table :admins
   password_hash_table :admin_password_hashes
 end
 </code></pre>
@@ -1772,7 +1773,7 @@ end
 
 plugin :rodauth, <b>:name=>:admin</b> do
   enable :login, :logout, :change_password
-  account_model AdminAccount
+  accounts_table :admins
   password_hash_table :admin_password_hashes
 end
 </code></pre>
@@ -1810,7 +1811,7 @@ end
   login_param 'user'
   login_label 'User'
   login_column :name
-  account_model User
+  accounts_table :users
   account_password_hash_column :password_hash
   title_instance_variable :@title
 end
@@ -1825,7 +1826,7 @@ end
   login_param 'user'
   login_label 'User'
   login_column :name
-  account_model User
+  accounts_table :users
   account_password_hash_column :password_hash
   title_instance_variable :@title
 end
@@ -1840,7 +1841,7 @@ end
   <b>login_param 'user'</b>
   <b>login_label 'User'</b>
   <b>login_column :name</b>
-  <b>account_model User</b>
+  <b>accounts_table :users</b>
   account_password_hash_column :password_hash
   <b>title_instance_variable :@title</b>
 end
@@ -1855,7 +1856,7 @@ end
   login_param 'user'
   login_label 'User'
   login_column :name
-  account_model User
+  accounts_table :users
   <b>account_password_hash_column :password_hash</b>
   title_instance_variable :@title
 end
