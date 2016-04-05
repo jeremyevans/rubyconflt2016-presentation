@@ -320,7 +320,7 @@ $ echo -n password | sha1
 </code></pre>
 
 !SLIDE
-.notes That is bad from a security perspective, as it makes it possible to crack the password hashes using a precomputed rainbow table, allowing all simple passwords to be cracked immediately.|A rainbow table of all 9 character alphanumeric SHA1 password hashes takes only 690GB of storage, and would allow immediate cracking of any of these passwords.
+.notes That is bad from a security perspective, as it makes it possible to crack the password hashes using a precomputed rainbow table, allowing all simple passwords to be cracked immediately.|A rainbow table of all 9 character alphanumeric SHA1 password hashes takes only 690GB of storage, and would allow immediate cracking of any of these passwords hashes.
 
 <h1 style="font-size: 100px; position: absolute; top: 240px; left: 110px;">Rainbow</h1>
 <h1 style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Table</h1>
