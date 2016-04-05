@@ -60,12 +60,12 @@
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 560px;">Simple</h1>
 
 !SLIDE 
-.notes I also wanted Rodauth to be full featured.  I wanted to be able to start a new application and with a few lines of code enable not just login authentication, but account creation and verification, password changing and resets, and brute force attack protection.|Other than the Rails-dependent authentication frameworks, most other ruby authentication libraries only offer login authentication, leaving you to implement the other features yourself.|So that is the history behind Rodauth and its design goals.  Let me now go over the sections in the rest of the presentation.  
+.notes I also wanted Rodauth to be full featured.  I wanted to be able to start a new application and with a few lines of code enable not just login authentication, but account creation and verification, password changing and resets, and brute force attack protection.|Other than the Rails-dependent authentication frameworks, most other ruby authentication libraries only offer login authentication, leaving you to implement the other features yourself.|So that is the history behind Rodauth and its design goals.
 
 <h1 class="white" style="font-size: 140px; position: absolute; top: 120px; right: 195px;">Full</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Featured</h1>
 
-!SLIDE 
+!SLIDE skip
 .notes I am first going to talk about how Rodauth attempts to protect against password hash cracking, stopping attackers from using password hashes stored on your site to break into other sites.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
@@ -73,7 +73,7 @@
 <h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Password</h1>
 <h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
 
-!SLIDE 
+!SLIDE skip
 .notes I will explain how Rodauth protects from the reverse, where another site has been attacked and its password hashes have been cracked, and attackers are attempting to use the cracked passwords to break into accounts on your site.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
@@ -81,23 +81,23 @@
 <h1 style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Cracked</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Passwords</h1>
 
-!SLIDE
+!SLIDE skip
 .notes I will then talk about how Rodauth handles tokens used for things like password resets and account verification.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">Token</h1>
 <h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
 
-!SLIDE
+!SLIDE skip
 .notes I will talk briefly about the features Rodauth offers,
 
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Features</h1>
 
-!SLIDE
+!SLIDE skip
 .notes and then talk about Rodauth's configuration DSL and the flexibility it offers to handle most authentication requirements, as well as some interesting aspects of Rodauth's internals.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
 
-!SLIDE
+!SLIDE skip
 .notes Finally, I will talk about how Rodauth can be integrated into existing systems.  It does not matter if you are using Rails, Sinatra, Roda, Hanami, or are running on bare Rack, you can use Rodauth in your application.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
@@ -121,20 +121,20 @@
 <h1 class="white" style="font-size: 100px; position: absolute; top: 140px; right: 270px;">Simple</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Passwords</h1>
 
-!SLIDE 
+!SLIDE skip
 .notes If you do not have any requirements on passwords, many humans will use passwords like 123456 or password
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 
-!SLIDE 
+!SLIDE skip
 .notes If you require that passwords must be at least eight characters and contain both uppercase letters, lowercase letters, and numbers, many humans will use passwords like Password1.  This is not significantly more secure than just password by itself.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Password1</h1>
 
-!SLIDE 
+!SLIDE skip
 .notes Password complexity requirements only make it more likely that humans will write down the password. If a human will not use a secure password in the absense of password complexity requirements, it is unlikely they will use a secure password if you have password complexity requirements.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 260px;">Password</h1>
@@ -791,7 +791,7 @@ SET search_path = public, pg_temp;
 <b>ERROR:  must be owner of relation account_password_hashes</b>
 </code></pre>
 
-!SLIDE
+!SLIDE skip
 .notes Basically, Rodauth's approach is secure against SQL Injection.
 
 <h1 style="font-size: 130px; position: absolute; top: 40px; left: 290px;">Secure</h1>
@@ -880,7 +880,7 @@ SET search_path = public, pg_temp;
 <div class="review">Review</div>
 
 !SLIDE
-.notes Protecting access to password hashes prevents attackers from using password hashes from your site to attack other sites.  How do you protect against the reverse, with attackers using cracked passwords from other sites to attack your site?
+.notes Protecting access to password hashes prevents attackers from using password hashes from your site to attack other sites.  How do you protect against the reverse, with attackers using passwords hashes from other sites to attack your site?
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Against</h1>
@@ -955,7 +955,7 @@ SET search_path = public, pg_temp;
 <h1 style="font-size: 130px; position: absolute; top: 440px; left: 160px;">P</h1>
 
 !SLIDE
-.notes which standards for Time-Based One-Time Password.
+.notes which stands for Time-Based One-Time Password.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
 <h1 style="font-size: 130px; position: absolute; top: 220px; left: 160px;">One</h1>
@@ -972,7 +972,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 70px; position: absolute; top: 560px; left: 360px;">RFC 6238</h1>
 
 !SLIDE
-.notes TOTP is time based. That means that as time passes, the authentication code to login changes.  Many TOTP implementations default to rotating the authentication code every minute.
+.notes TOTP is time based. That means that as time passes, the authentication code to login changes.  Many TOTP implementations default to rotating the authentication code every 30 seconds.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
 
@@ -1239,7 +1239,7 @@ WHERE id = 1234;
 <h1 style="font-size: 200px; position: absolute; top: 180px; left: 20px;">Performance</h1>
 
 !SLIDE
-.notes In review, Rodauth uses account specific tokens stored in separate tables, mostly for performance. It also tries to prevent against theoretical brute force and timing attacks on tokens.
+.notes In review, Rodauth uses account specific tokens stored in separate tables, mostly for performance and storage space. It also tries to prevent against theoretical brute force and timing attacks on tokens.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">Token</h1>
 <h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
@@ -1342,9 +1342,21 @@ WHERE id = 1234;
 <h1 style="font-size: 100px; position: absolute; top: 450px; left: 540px;">Session</h1>
 
 !SLIDE
-.notes Finally, Rodauth has an OTP feature implementing time-based one time passwords as I discussed earlier.
+.notes Rodauth has an OTP feature implementing 2nd factor authentication via time-based one time passwords.
 
 <h1 class="white" style="font-size: 200px; position: absolute; top: 420px; left: 320px;">OTP</h1>
+
+!SLIDE
+.notes Rodauth has an SMS codes feature implemtenting 2nd factor authentication via codes sent via SMS messages.
+
+<h1 style="font-size: 200px; position: absolute; top: 150px; left: 270px;">SMS</h1>
+<h1 class="white" style="font-size: 200px; position: absolute; top: 320px; left: 320px;">Codes</h1>
+
+!SLIDE
+.notes Finally, Rodauth has a recovery codes feature implemtenting 2nd factor authentication via single-use account recovery codes.
+
+<h1 class="white" style="font-size: 150px; position: absolute; top: 200px; left: 130px;">Recovery</h1>
+<h1 style="font-size: 200px; position: absolute; top: 320px; left: 320px;">Codes</h1>
 
 !SLIDE
 .notes In review, Rodauth is a full featured authentication and account management framework, which should be able to handle the needs of most applications.
@@ -1459,7 +1471,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes For simplicity, Rodauth allows you to use arguments for many simple configuration settings.  The accounts_table method sets the database table used to store account.  You can specify this by just passing a symbol to the method.  This is a useful shortcut.
+.notes For simplicity, Rodauth allows you to use arguments for many simple configuration settings.  The accounts_table method sets the database table used to store accounts.  You can specify this by just passing a symbol to the method.  This is a useful shortcut.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1511,7 +1523,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes And when you call one of the configuration methods with a block, you are actually defining an instance method in the Auth class.
+.notes And when you call one of the configuration methods, you are actually defining an instance method in the Auth class.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>class Auth
   include Login
@@ -1701,6 +1713,7 @@ class RodauthApp &lt; Roda
   route do |r|
     r.rodauth
     r.redirect('/login') unless rodauth.logged_in?
+    env['rodauth'] = rodauth
   end
 end
 
@@ -1708,7 +1721,7 @@ use RodauthApp
 </code></pre>
 
 !SLIDE
-.notes In this case, if Rodauth does not handle the request and the user is not logged in, the Roda middleware will redirect them to the login page, which Rodauth will handle. If the user is logged in, any route that Rodauth does not handle will be passed to the application.|You may be concerned about the extra overhead of this approach, but fear not, Roda is very light framework, and this only adds about 2 megabytes to your application's memory overhead.  
+.notes In this case, if Rodauth does not handle the request and the user is not logged in, the Roda middleware will redirect them to the login page, which Rodauth will handle. If the user is logged in, any route that Rodauth does not handle will be passed to the application.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
 
@@ -1720,6 +1733,27 @@ class RodauthApp &lt; Roda
   route do |r|
     r.rodauth
     <b>r.redirect('/login') unless rodauth.logged_in?</b>
+    env['rodauth'] = rodauth
+  end
+end
+
+use RodauthApp
+</code></pre>
+
+!SLIDE
+.notes You can set the rodauth object in the requests environment, making it easy for the application to get access to it.|You may be concerned about the extra overhead of this approach, but fear not, Roda is very light framework, and this only adds about 2 megabytes to your application's memory overhead.  
+
+<pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
+
+class RodauthApp &lt; Roda
+  plugin :middleware
+  plugin :rodauth do
+    enable :login, :logout
+  end
+  route do |r|
+    r.rodauth
+    r.redirect('/login') unless rodauth.logged_in?
+    <b>env['rodauth'] = rodauth</b>
   end
 end
 
