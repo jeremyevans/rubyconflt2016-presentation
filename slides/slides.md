@@ -163,7 +163,7 @@
 <h1 style="font-size: 130px; position: absolute; top: 370px; left: 160px;">Access</h1>
 
 !SLIDE
-.notes Before I discuss how Rodauth protects against access to the password hashes, let me first discuss the worst case scenario, where an attacker is able to access the password hashes. The first thing they will probably do is to attempt to crack the passwords.
+.notes Before I discuss how Rodauth protects against access to the password hashes, let me first discuss the worst case scenario, where an attacker is able to access the password hashes. The first thing they will probably do is to attempt to crack the hashes.
 
 <h1 class="white" style="font-size: 160px; position: absolute; top: 310px; left: 260px;">Cracking</h1>
 
@@ -1347,13 +1347,13 @@ WHERE id = 1234;
 <h1 class="white" style="font-size: 200px; position: absolute; top: 420px; left: 320px;">OTP</h1>
 
 !SLIDE
-.notes Rodauth has an SMS codes feature implemtenting 2nd factor authentication via codes sent via SMS messages.
+.notes Rodauth has an SMS codes feature implementing 2nd factor authentication via codes sent via SMS messages.
 
 <h1 style="font-size: 200px; position: absolute; top: 150px; left: 270px;">SMS</h1>
 <h1 class="white" style="font-size: 200px; position: absolute; top: 320px; left: 320px;">Codes</h1>
 
 !SLIDE
-.notes Finally, Rodauth has a recovery codes feature implemtenting 2nd factor authentication via single-use account recovery codes.
+.notes Finally, Rodauth has a recovery codes feature implementing 2nd factor authentication via single-use account recovery codes.
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 200px; left: 130px;">Recovery</h1>
 <h1 style="font-size: 200px; position: absolute; top: 320px; left: 320px;">Codes</h1>
@@ -1741,7 +1741,7 @@ use RodauthApp
 </code></pre>
 
 !SLIDE
-.notes You can set the rodauth object in the requests environment, making it easy for the application to get access to it.|You may be concerned about the extra overhead of this approach, but fear not, Roda is very light framework, and this only adds about 2 megabytes to your application's memory overhead.  
+.notes You can set the rodauth object in the request's environment, making it easy for the application to get access to it.|You may be concerned about the extra overhead using Rodauth via Roda middleware, but fear not, Roda is very light framework, and only adds about 2 megabytes to your application's memory overhead.  
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
 
@@ -1930,7 +1930,7 @@ end
 <h1 style="font-size: 100px; position: absolute; top: 380px; left: 220px;">Passwords</h1>
 
 !SLIDE
-.notes Second, if you store password hashes, always use bcrypt or scrypt as the password hash.  For important passwords, such as administrative passwords, consider using a higher than default cost factor.
+.notes Second, if you store password hashes, always use bcrypt or scrypt as the password hash algorithm.  For important passwords, such as administrative passwords, consider using a higher than default cost factor.
 
 <h1 class="white" style="font-size: 200px; position: absolute; top: 340px; left: 120px;">Use</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 460px;">bcrypt</h1>
