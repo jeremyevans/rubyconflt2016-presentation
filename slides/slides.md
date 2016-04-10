@@ -1719,7 +1719,7 @@ end
 <h1 style="font-size: 100px; position: absolute; top: 400px; left: 320px;">Frameworks</h1>
 
 !SLIDE
-.notes Roda supports a middlware plugin, which allows the Roda application to be used as Rack middleware. So to use Rodauth in another web framework, you just create a small Roda app, load the middleware and rodauth plugins, and have the route block call r.rodauth.
+.notes Roda supports a middleware plugin, which allows the Roda application to be used as Rack middleware. So to use Rodauth in another web framework, you just create a small Roda app, load the middleware and rodauth plugins, and have the route block call r.rodauth.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
 
