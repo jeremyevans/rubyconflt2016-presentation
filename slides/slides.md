@@ -33,7 +33,7 @@
 
 
 !SLIDE
-.notes If you are looking for a full featured authentication framework, and you are using Rails, there is Devise, Authlogic, and Sorcery.
+.notes If you are looking for a authentication framework, and you are using Rails, there is Devise, Authlogic, and Sorcery.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Devise</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Authlogic</h1>
@@ -251,7 +251,7 @@ aaaaaa
 .notes There are fewer than a half million 4 character all lowercase passwords
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>
-[a-z]{4}       | <b>456976</b>
+[a-z]{<b>4</b>}       | <b>456976</b>
 [a-z]{8}       | 2 * 10<sup>11</sup>
 [a-z0-9]{8}    | 3 * 10<sup>12</sup>
 [A-Za-z]{8}    | 5 * 10<sup>13</sup>
@@ -264,7 +264,7 @@ aaaaaa
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>
 [a-z]{4}       | 456976
-[a-z]{8}       | <b>2 * 10<sup>11</sup></b>
+[a-z]{<b>8</b>}       | <b>2 * 10<sup>11</sup></b>
 [a-z0-9]{8}    | 3 * 10<sup>12</sup>
 [A-Za-z]{8}    | 5 * 10<sup>13</sup>
 [A-Za-z0-9]{8} | 2 * 10<sup>14</sup>
@@ -280,7 +280,7 @@ aaaaaa
 [a-z0-9]{8}    | 3 * 10<sup>12</sup>
 [A-Za-z]{8}    | 5 * 10<sup>13</sup>
 [A-Za-z0-9]{8} | 2 * 10<sup>14</sup>
-[a-z]{11}      | <b>3 * 10<sup>15</sup></b>
+[a-z]{<b>11</b>}      | <b>3 * 10<sup>15</sup></b>
 </code></pre>
 
 !SLIDE
@@ -291,8 +291,8 @@ aaaaaa
 [a-z]{8}       | 2 * 10<sup>11</sup>
 [a-z0-9]{8}    | 3 * 10<sup>12</sup>
 [A-Za-z]{8}    | 5 * 10<sup>13</sup>
-<b>[A-Za-z0-9]{8} | 2 * 10<sup>14</sup></b>
-<b>[a-z]{11}      | 3 * 10<sup>15</sup> 16x</b> 
+<b>[A-Za-z0-9]{8}</b> | <b>2 * 10<sup>14</sup></b>
+<b>[a-z]{11}</b>      | <b>3 * 10<sup>15</sup> 16x</b> 
 </code></pre>
 
 !SLIDE
@@ -327,7 +327,7 @@ $ echo -n password | sha1
 <h1 class="white" style="font-size: 200px; position: absolute; top: 250px; left: 520px;">Attack</h1>
 
 !SLIDE
-.notes To prevent a rainbow table attack, you do what is called salting, where you add random data before the password, and when you check a password, you prepend the salt to the password and check if the resulting hash matches.
+.notes To prevent a rainbow table attack, you do what is called salting, where you add random data called a salt before the password, and when you check a submitted password, you prepend the salt for the current password to the submitted password, compute the password hash, and then check if the resulting hash matches.
 
 <h1 class="white" style="font-size: 200px; position: absolute; top: 310px; left: 360px;">Salting</h1>
 
@@ -1161,7 +1161,7 @@ WHERE <b>id = 1234</b>;
 </code></pre>
 
 !SLIDE
-.notes Using account specific tokens decreases the probability that a brute force attack on a token will work.  The issue with purely random tokens is that you can brute force attack all tokens at the same time.
+.notes Using account specific tokens decreases the probability that a brute force attack on tokens will work.  The issue with purely random tokens is that you can brute force attack all tokens at the same time.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Brute</h1>
 <h1 style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Force</h1>
@@ -1477,7 +1477,7 @@ end
 </code></pre>
 
 !SLIDE
-.notes The interesting things here are the calls to account and request.|You see, each of these configuration blocks is evaluated in the context of a Rodauth object.  This object has access to everything related to the request.|So you can change how Rodauth will handle requests using any information related the request.  This design is what makes Rodauth flexible enough to handle most authentication needs.
+.notes The interesting things here are the calls to account and request.|You see, the blocks you pass to each of these configuration methods are evaluated in the context of a Rodauth object.  This object has access to everything related to the request.|So you can change how Rodauth will handle requests using any information related the request.  This design is what makes Rodauth flexible enough to handle most authentication needs.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>plugin :rodauth do
   enable :login, :logout
@@ -1730,7 +1730,7 @@ class RodauthApp &lt; Roda
   end
   route do |r|
     r.rodauth
-    r.redirect('/login') unless rodauth.logged_in?
+    rodauth.require_authentication
     env['rodauth'] = rodauth
   end
 end
@@ -1750,7 +1750,7 @@ class RodauthApp &lt; Roda
   end
   route do |r|
     r.rodauth
-    <b>r.redirect('/login') unless rodauth.logged_in?</b>
+    <b>rodauth.require_authentication</b>
     env['rodauth'] = rodauth
   end
 end
@@ -1770,7 +1770,7 @@ class RodauthApp &lt; Roda
   end
   route do |r|
     r.rodauth
-    r.redirect('/login') unless rodauth.logged_in?
+    rodauth.require_authentication
     <b>env['rodauth'] = rodauth</b>
   end
 end
