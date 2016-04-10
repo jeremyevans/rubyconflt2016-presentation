@@ -1311,6 +1311,13 @@ WHERE id = 1234;
 <h1 style="font-size: 150px; position: absolute; top: 220px; left: 420px;">Lockout</h1>
 
 !SLIDE
+.notes Rodauth by default requires users to reinput their password for account modifications, but it offers a feature so that it does not ask for a password if one has been entered recently.
+
+<h1 class="white" style="font-size: 100px; position: absolute; top: 220px; left: 340px;">Password</h1>
+<h1 style="font-size: 150px; position: absolute; top: 280px; left: 210px;">Grace</h1>
+<h1 class="white" style="font-size: 120px; position: absolute; top: 400px; left: 335px;">Period</h1>
+
+!SLIDE
 .notes If you have a policy that requires password complexity checks, Rodauth has a feature that offers a configurable password complexity checker.
 
 <h1 style="font-size: 100px; position: absolute; top: 220px; left: 340px;">Password</h1>
@@ -1336,10 +1343,16 @@ WHERE id = 1234;
 <h1 style="font-size: 150px; position: absolute; top: 300px; left: 220px;">Expiration</h1>
 
 !SLIDE
+.notes expiring sessions based on inactivity timeouts and max lifetimes,
+
+<h1 style="font-size: 100px; position: absolute; top: 220px; left: 340px;">Session</h1>
+<h1 class="white" style="font-size: 150px; position: absolute; top: 300px; left: 220px;">Expiration</h1>
+
+!SLIDE
 .notes as well as limiting each account to a single logged in session, automatically terminating any existing session when the user logs in.
 
-<h1 class="white" style="font-size: 150px; position: absolute; top: 320px; left: 240px;">Single</h1>
-<h1 style="font-size: 100px; position: absolute; top: 450px; left: 540px;">Session</h1>
+<h1 class="white" style="font-size: 115px; position: absolute; top: 120px; left: 240px;">Single</h1>
+<h1 style="font-size: 100px; position: absolute; top: 220px; left: 340px;">Session</h1>
 
 !SLIDE
 .notes Rodauth has an OTP feature implementing 2nd factor authentication via time-based one time passwords.
@@ -1353,10 +1366,15 @@ WHERE id = 1234;
 <h1 class="white" style="font-size: 200px; position: absolute; top: 320px; left: 320px;">Codes</h1>
 
 !SLIDE
-.notes Finally, Rodauth has a recovery codes feature implementing 2nd factor authentication via single-use account recovery codes.
+.notes Rodauth has a recovery codes feature implementing 2nd factor authentication via single-use account recovery codes.
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 200px; left: 130px;">Recovery</h1>
 <h1 style="font-size: 200px; position: absolute; top: 320px; left: 320px;">Codes</h1>
+
+!SLIDE
+.notes Finally, Rodauth has a JWT feature, which adds JSON API support to all of Rodauth's features, storing authentication information in JWT tokens instead of sessions.
+
+<h1 class="white" style="font-size: 200px; position: absolute; top: 300px; left: 330px;">JWT</h1>
 
 !SLIDE
 .notes In review, Rodauth is a full featured authentication and account management framework, which should be able to handle the needs of most applications.
