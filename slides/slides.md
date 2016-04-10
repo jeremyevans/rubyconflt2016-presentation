@@ -308,7 +308,7 @@ aaaaaa
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">SHA1</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 430px; left: 160px;">SHA256</h1>
 
-!SLIDE 
+!SLIDE skip
 .notes If you take the SHA1 hash of the word password, it always results in the same hash.
 
 <pre style="font-size: 50px; margin-top: 10px;"><code>
@@ -1168,7 +1168,7 @@ WHERE <b>id = 1234</b>;
 <h1 class="white" style="font-size: 200px; position: absolute; top: 240px; left: 520px;">Attack</h1>
 
 !SLIDE
-.notes Other authentication frameworks will lookup tokens using a query like this.  The problem with this approach is that it increases the odds of a successful brute force attack into an arbitrary account by the number of rows that have a token.
+.notes Other authentication frameworks will lookup accounts via tokens using a query like this.  The problem with this approach is that it increases the odds of a successful brute force attack into an arbitrary account by the number of rows that have a token.
 
 <pre style="font-size: 40px; margin-top: 210px;"><code>SELECT <b>id</b> FROM accounts
 WHERE <b>password_reset_key = </b>
