@@ -20,6 +20,7 @@ sup {
  vertical-align: super;
  font-size: smaller;
 }
+
 h1, pre, td, tr {
  font-family: inherit;
  font-weight: inherit;
@@ -28,6 +29,9 @@ h1, pre, td, tr {
  background-color: transparent;
  margin: 0;
  padding: 0;
+}
+h1 {
+ font-family: 'Playfair Display', serif;
 }
 pre {
  line-height: 125%; 

@@ -1295,20 +1295,41 @@ WHERE id = 1234;
 <h1 style="font-size: 150px; position: absolute; top: 280px; left: 320px;">Account</h1>
 
 !SLIDE
+.notes You can also require that users reverify they have access to the email address associated with the account if they change the address.
+
+<h1 class="white" style="font-size: 100px; position: absolute; top: 220px; left: 420px;">Verify</h1>
+<h1 style="font-size: 100px; position: absolute; top: 300px; left: 340px;">Change</h1>
+<h1 style="font-size: 150px; position: absolute; top: 380px; left: 270px;">Login</h1>
+
+!SLIDE
 .notes There is also a feature for users to close their own accounts.
 
 <h1 style="font-size: 100px; position: absolute; top: 220px; left: 420px;">Close</h1>
 <h1 class="white" style="font-size: 150px; position: absolute; top: 280px; left: 320px;">Account</h1>
 
 !SLIDE
-.notes There is a feature called remember for automatically authenticating users based on a token stored in a cookie, keeping track of whether they logged in via password or cookie, and asking them to reauthenticate via password for security sensitive actions.
+.notes There is a feature called remember for automatically authenticating users based on a token stored in a cookie, and keeping track of whether they logged in via password or cookie,
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 220px; left: 420px;">Remember</h1>
+
+!SLIDE
+.notes which integrates with another feature that Rodauth offers for asking users to confirm their password for security sensitive actions.
+
+<h1 class="white" style="font-size: 130px; position: absolute; top: 240px; left: 620px;">Confirm</h1>
+<h1 style="font-size: 150px; position: absolute; top: 320px; left: 520px;">Password</h1>
 
 !SLIDE
 .notes To prevent bruteforce attacks, there is an account lockout feature that locks accounts out after a certain number of failed logins, as well as allowing users to unlock their account via email.
 
 <h1 style="font-size: 150px; position: absolute; top: 220px; left: 420px;">Lockout</h1>
+
+!SLIDE
+.notes When verifying accounts, Rodauth by default does not allow the accounts to login until they are verified, but you can allow a grace period for them to login before verifying.
+
+<h1 class="white" style="font-size: 100px; position: absolute; top: 120px; left: 420px;">Verify</h1>
+<h1 class="white" style="font-size: 150px; position: absolute; top: 180px; left: 320px;">Account</h1>
+<h1 style="font-size: 150px; position: absolute; top: 280px; left: 210px;">Grace</h1>
+<h1 class="white" style="font-family: Playfair Display; font-size: 120px; position: absolute; top: 400px; left: 335px;">Period</h1>
 
 !SLIDE
 .notes Rodauth by default requires users to reinput their password for account modifications, but it offers a feature so that it does not ask for a password if one has been entered recently.
