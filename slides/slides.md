@@ -65,7 +65,7 @@
 <h1 class="white" style="font-size: 140px; position: absolute; top: 120px; right: 195px;">Full</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Featured</h1>
 
-!SLIDE skip
+!SLIDE
 .notes I am first going to talk about how Rodauth attempts to protect against password hash cracking, stopping attackers from using password hashes stored on your site to break into other sites.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
@@ -73,7 +73,7 @@
 <h1 class="white" style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Password</h1>
 <h1 style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Cracking</h1>
 
-!SLIDE skip
+!SLIDE
 .notes I will explain how Rodauth protects from the reverse, where another site has been attacked and its password hashes have been cracked, and attackers are attempting to use the cracked passwords to break into accounts on your site.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 70px;">Protect</h1>
@@ -81,23 +81,23 @@
 <h1 style="font-size: 100px; position: absolute; top: 320px; left: 310px;">Cracked</h1>
 <h1 class="white" style="font-size: 100px; position: absolute; top: 400px; left: 360px;">Passwords</h1>
 
-!SLIDE skip
+!SLIDE
 .notes I will then talk about how Rodauth handles tokens used for things like password resets and account verification.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 410px; right: 160px;">Token</h1>
 <h1 style="font-size: 100px; position: absolute; top: 520px; right: 140px;">Security</h1>
 
-!SLIDE skip
+!SLIDE
 .notes I will talk briefly about the features Rodauth offers,
 
 <h1 style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Features</h1>
 
-!SLIDE skip
+!SLIDE
 .notes and then talk about Rodauth's configuration DSL and the flexibility it offers to handle most authentication requirements, as well as some interesting aspects of Rodauth's internals.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 310px; left: 360px;">Configuration</h1>
 
-!SLIDE skip
+!SLIDE
 .notes Finally, I will talk about how Rodauth can be integrated into existing systems.  It does not matter if you are using Rails, Sinatra, Roda, Hanami, or are running on bare Rack, you can use Rodauth in your application.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 360px;">Integration</h1>
@@ -121,20 +121,20 @@
 <h1 class="white" style="font-size: 100px; position: absolute; top: 140px; right: 270px;">Simple</h1>
 <h1 style="font-size: 130px; position: absolute; top: 210px; right: 160px;">Passwords</h1>
 
-!SLIDE skip
+!SLIDE
 .notes If you do not have any requirements on passwords, many humans will use passwords like 123456 or password
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 
-!SLIDE skip
+!SLIDE
 .notes If you require that passwords must be at least eight characters and contain both uppercase letters, lowercase letters, and numbers, many humans will use passwords like Password1.  This is not significantly more secure than just password by itself.
 
 <h1 style="font-size: 130px; position: absolute; top: 110px; left: 160px;">123456</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">password</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 510px; left: 160px;">Password1</h1>
 
-!SLIDE skip
+!SLIDE
 .notes Password complexity requirements only make it more likely that humans will write down the password. If a human will not use a secure password in the absense of password complexity requirements, it is unlikely they will use a secure password if you have password complexity requirements.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 260px;">Password</h1>
@@ -167,13 +167,13 @@
 
 <h1 class="white" style="font-size: 160px; position: absolute; top: 310px; left: 260px;">Cracking</h1>
 
-!SLIDE skip
+!SLIDE
 .notes This is generally done first using a dictionary attack.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Dictionary</h1>
 <h1 style="font-size: 100px; position: absolute; top: 230px; left: 460px;">Attack</h1>
 
-!SLIDE skip
+!SLIDE
 .notes A dictionary attack basically tries each word in a dictionary, in order.  In English, there are only a few thousand words in a dictionary, so any password that is also a word that appears in a dictionary will be cracked almost immediately.  There many variations on dictionary attacks.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>aardvark
@@ -182,7 +182,7 @@ aback
 ...
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes One variation on a dictionary attack uses each dictionary word as a prefix, and checks different suffixes.  Passwords that use simple additions like this will also be cracked quickly.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>aardvark<b>1</b> 
@@ -194,7 +194,7 @@ aardwolf<b>2</b>
 ...
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes Another uses common substitutions of symbols and numbers for letters.  Passwords that use substitutions like this also tend to be cracked quickly.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code><b>@</b>ardvark
@@ -208,14 +208,14 @@ aardwo<b>1</b>f
 ...
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes The next attack is usually a brute force attack.
 
 <h1 style="font-size: 130px; position: absolute; top: 210px; left: 160px;">Brute</h1>
 <h1 style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Force</h1>
 <h1 class="white" style="font-size: 200px; position: absolute; top: 240px; left: 520px;">Attack</h1>
 
-!SLIDE skip
+!SLIDE
 .notes A brute force attack basically tries all possible combinations of characters, and will eventually be able to crack any password given enough time.
 
 <pre style="font-size: 60px; margin-top: 10px;"><code>aaaa
@@ -308,7 +308,7 @@ aaaaaa
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">SHA1</h1>
 <h1 class="white" style="font-size: 130px; position: absolute; top: 430px; left: 160px;">SHA256</h1>
 
-!SLIDE skip
+!SLIDE
 .notes If you take the SHA1 hash of the word password, it always results in the same hash.
 
 <pre style="font-size: 50px; margin-top: 10px;"><code>
@@ -764,13 +764,13 @@ SET search_path = public, pg_temp;
 </code></pre>
 
 
-!SLIDE skip
+!SLIDE
 .notes More sophisticated attackers might try to grant themselves access to the table first.
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>GRANT SELECT ON account_password_hashes to my_account;
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes While this does not result in an error, it also does not make any changes.  The reason for this is that the app account is not the owner of the password hash table, and only the owner of the table or a superuser can grant privileges on the table.
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>GRANT SELECT ON account_password_hashes to my_account;
@@ -778,20 +778,20 @@ SET search_path = public, pg_temp;
 </code></pre>
 
 
-!SLIDE skip
+!SLIDE
 .notes Maybe an attacker will try to change the owner of the table?
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>ALTER TABLE account_password_hashes OWNER TO my_account;
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes This also raises an error, as you cannot change the owner of a table unless you are the owner of the table.
 
 <pre style="font-size: 30px; margin-top: 210px;"><code>ALTER TABLE account_password_hashes OWNER TO my_account;
 <b>ERROR:  must be owner of relation account_password_hashes</b>
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes Basically, Rodauth's approach is secure against SQL Injection.
 
 <h1 style="font-size: 130px; position: absolute; top: 40px; left: 290px;">Secure</h1>
@@ -812,19 +812,19 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 150px; position: absolute; top: 210px; left: 160px;">Password</h1>
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 200px;">Access</h1>
 
-!SLIDE skip
+!SLIDE
 .notes If an attacker can exploit a remote code execution vulnerability in your application, they may be able to escalate their privileges to get access to a database superuser account, database files, or database backups.  To mitigate against that risk you need to isolate your database from your application, which is a bit out of scope for this talk.
 
 <h1 style="font-size: 100px; position: absolute; top: 160px; left: 260px;">Privilege</h1>
 <h1 class="white" style="font-size: 150px; position: absolute; top: 240px; left: 210px;">Escalation</h1>
 
-!SLIDE skip
+!SLIDE
 .notes While an attacker that could exploit a remote code execution vulnerability would not have direct access to stored password hashes, there is a possible timing attack which may allow them to more easily guess password hashes.
 
 <h1 class="white" style="font-size: 150px; position: absolute; top: 310px; left: 360px;">Timing</h1>
 <h1 style="font-size: 130px; position: absolute; top: 430px; left: 610px;">Attack</h1>
 
-!SLIDE skip
+!SLIDE
 .notes If we go back to the database function used for checking password hashes, it just does a simple comparison of the existing hash to the provided hash.  This means that the time this query will take to return a result is in some way dependent on how many initial characters of the provided password hash match the stored password hash.|It is theoretically possible for attacker to exploit this to determine the stored password hash, though I expect such an attack would be difficult.  This type of attack could be mitigated by using a timing safe string comparison function, but unfortunately most databases do not provide one.
 
 <pre style="font-size: 40px; margin-top: 10px;"><code>CREATE OR REPLACE FUNCTION
@@ -962,7 +962,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 330px; left: 160px;">Time</h1>
 <h1 style="font-size: 130px; position: absolute; top: 440px; left: 160px;">Password</h1>
 
-!SLIDE skip
+!SLIDE
 .notes TOTP is described by RFC 6238, which was published in 2011, so it has been around for a while.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
@@ -976,12 +976,12 @@ SET search_path = public, pg_temp;
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 110px; left: 160px;">Time-Based</h1>
 
-!SLIDE skip
+!SLIDE
 .notes The authentication code generated for this minute may be 52 64 61,
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">T1: 526461</h1>
 
-!SLIDE skip
+!SLIDE
 .notes but the following minute the authentication code will change to 75 74 68
 
 <h1 style="font-size: 130px; position: absolute; top: 310px; left: 160px;">T1: 526461</h1>
@@ -1069,7 +1069,7 @@ SET search_path = public, pg_temp;
 <h1 class="white" style="font-size: 130px; position: absolute; top: 240px; left: 160px;">TOTP</h1>
 <h1 style="font-size: 170px; position: absolute; top: 210px; left: 540px;">Lockout</h1>
 
-!SLIDE skip
+!SLIDE
 .notes Rodauth defaults to requiring a user to reenter their password whenever changing their TOTP security settings, as well as already being authenticated via TOTP before disabling 2 factor authentication or viewing recovery codes.
 
 <h1 class="white" style="font-size: 130px; position: absolute; top: 240px; left: 160px;">TOTP</h1>
@@ -1439,7 +1439,7 @@ class App &lt; Roda
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes The route block here is executed for each request received by the application.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
@@ -1454,7 +1454,7 @@ class App &lt; Roda
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes In this example, all the route block does is call r.rodauth, which allows Rodauth to handle the request.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'roda'
@@ -1594,7 +1594,7 @@ end
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes One consequence of this approach is that in all blocks given to configuration methods, you can call super to get Rodauth's default behavior.  Because you are defining methods via a block, you must pass explicit arguments to super, which in this case is no arguments.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1799,7 +1799,7 @@ end
 use RodauthApp
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes For database access, Rodauth uses Sequel internally, but you can certainly use ActiveRecord in your application and still use Rodauth. You would have to setup a Sequel database connection, but that is pretty much it.|Sequel is not as small as Roda, but it still adds less than 8 megabytes to your application's memory overhead.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>require 'sequel'
@@ -1875,7 +1875,7 @@ end
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes Let us take a brief look at a real world example of Rodauth usage.  This is from one of my open source applications called Giftsmas, which is a gift tracking program.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1890,7 +1890,7 @@ end
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes As I showed earlier, the first step is to enable the the required features, in this case login and logout.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1905,7 +1905,7 @@ end
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes These methods all override the default values so that the user interface for Giftsmas did not change when its custom authentication implementation was converted to use Rodauth.|No changes were required to the Giftsmas integration tests when converting it to use Rodauth.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
@@ -1920,7 +1920,7 @@ end
 end
 </code></pre>
 
-!SLIDE skip
+!SLIDE
 .notes Before I converted Giftsmas to use Rodauth, it already stored bcrypt password hashes in a column in the same table, so Giftsmas uses the account_password_hash_column configuration method.|I run the Giftsmas demo site on Heroku, so I cannot easily switch it to use Rodauth's more secure default approach.
 
 <pre class="sh_ruby" style="font-size: 40px; margin-top: 10px;"><code>plugin :rodauth do
