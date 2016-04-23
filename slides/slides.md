@@ -1657,7 +1657,7 @@ end
 .notes The reason for doing this is that you can then define instance methods in this module subclass.  Here we define a depends method to set dependencies for the feature.
 
 <pre class="sh_ruby" style="font-size: 32px; margin-top: 10px;"><code>class Feature &lt; Module
-  <b>def depends(*d)</b>
+  <b>def depends(*deps)</b>
     dependencies.concat(deps)
   end
 end
