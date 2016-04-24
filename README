@@ -1,0 +1,6 @@
+This is the source code for the presentation I gave at RubyConf LT 2016. Multiple
+people asked for the source code, so here it is.
+
+This uses my fork of showoff, which you can get at https://github.com/jeremyevans/showoff
+
+As you will see, this isn't pretty, as I never intended to publicly release it.
